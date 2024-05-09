@@ -1,0 +1,41 @@
+#contents {
+    background-color: whitesmoke;
+}
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-right: 10px;
+    flex-direction: row;
+}
+
+.card {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #1c283364;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.c-1 {
+    max-width: 10vw;
+    max-height: 10vh;
+}
+
+.c-2 {
+    max-width: 20vw;
+    max-height: 20vh;
+}
+
+.c-3 {
+    max-width: 40vw;
+    max-height: 40vh;
+}
+
+.c-4 {
+    max-width: 85vw;
+    max-height: 90vh;
+}

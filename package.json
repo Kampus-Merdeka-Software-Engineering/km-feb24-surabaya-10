@@ -1,0 +1,23 @@
+{
+  "name": "se-surabaya-team_10",
+  "version": "1.0.0",
+  "description": "capstone projek",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RIF-creativity/SE-Surabaya-team_10.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RIF-creativity/SE-Surabaya-team_10/issues"
+  },
+  "homepage": "https://github.com/RIF-creativity/SE-Surabaya-team_10#readme",
+  "dependencies": {
+    "googleapis": "^136.0.0"
+  }
+}

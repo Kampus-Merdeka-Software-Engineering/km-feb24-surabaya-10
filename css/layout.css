@@ -1,0 +1,131 @@
+:root {
+    --primary: #FFDE3E;
+    --secondary: #1C2833;
+    --bg-primary: #ffdf3e0f;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    width: 100vw;
+    height: 100vh;
+    color: var(--secondary);
+    overflow-x: hidden;
+}
+
+header {
+    height: 10vh;
+    position: fixed;
+}
+
+nav {
+    display: flex;
+    height: 7vh;
+    align-items: center;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+nav #logo {
+    width: 6vh;
+    margin: 0 10px 0px 20px;
+
+}
+
+#description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 3vh;
+    font-size: 3vh;
+    background-color: var(--primary);
+    color: var(--secondary);
+
+}
+
+#description h6 {
+    margin: 0 20px 0 20px;
+}
+
+main {
+    padding-top: 10vh;
+    display: flex;
+    height: 90vh;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-between;
+}
+
+#menu {
+    position: fixed;
+    width: 9vw;
+    display: flex;
+    background-color: var(--bg-primary);
+    justify-content: flex-end;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+#menu a {
+    text-decoration: none;
+}
+
+#menu button {
+    border: none;
+    color: var(--secondary);
+    font-size: 1vw;
+    background-color: rgba(0, 0, 0, 0);
+    width: 8vw;
+    margin-bottom: 10px;
+    border-radius: 5px 0 0 5px;
+}
+
+#menu button:hover {
+    background-color: #ffdf3e40;
+}
+
+#menu .btn-on {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: none;
+    box-shadow: 0 2px rgba(0, 0, 0, 0.104);
+}
+
+#menu .btn-on:hover {
+    background-color: var(--secondary);
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+}
+
+#contents {
+    display: flex;
+    width: 90.8vw;
+    min-height: 90vh;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+#content {
+    padding: 10px;
+}
+
+footer {
+    width: 99%;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--secondary);
+    color: lightcyan;
+}
+
+#horizontal {
+    margin-left: 9vw;
+    background-color: var(--secondary);
+    width: 0.2vw;
+}
