@@ -1,7 +1,7 @@
 :root {
     --primary: #FFDE3E;
     --secondary: #1C2833;
-    --bg-primary: #ffdf3e0f;
+    --bg-primary: #fbf6dc;
 }
 
 body {
@@ -11,7 +11,6 @@ body {
     width: 100vw;
     height: 100vh;
     color: var(--secondary);
-    overflow-x: hidden;
 }
 
 header {
@@ -25,12 +24,12 @@ nav {
     align-items: center;
     background-color: var(--secondary);
     color: var(--primary);
+    font-size: 1.8vw;
 }
 
 nav #logo {
     width: 6vh;
     margin: 0 10px 0px 20px;
-
 }
 
 #description {
@@ -56,13 +55,15 @@ main {
     flex-wrap: wrap;
     align-content: stretch;
     justify-content: space-between;
+    background-color: #1C2833;
 }
 
 #menu {
     position: fixed;
     width: 9vw;
     display: flex;
-    background-color: var(--bg-primary);
+    background-color: white;
+    height: 100%;
     justify-content: flex-end;
 }
 
@@ -107,25 +108,61 @@ ul {
 #contents {
     display: flex;
     width: 90.8vw;
-    min-height: 90vh;
+    margin-left: 9.2vw;
+    height: 100%;
     flex-wrap: wrap;
     align-content: space-between;
+    overflow-y: auto;
+    background-color: white;
 }
 
 #content {
+    overflow-y: auto;
+    overflow-x: auto;
     padding: 10px;
 }
 
 footer {
-    width: 99%;
+    width: 100%;
+    margin-top: 2vh;
+    overflow-x: hidden;
     padding: 20px;
     text-align: center;
     background-color: var(--secondary);
     color: lightcyan;
+    font-size: 1.2vw;
 }
 
-#horizontal {
-    margin-left: 9vw;
-    background-color: var(--secondary);
-    width: 0.2vw;
+/* Style untuk scroll bar vertikal */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    /* Lebar scroll bar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Warna latar belakang track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    /* Warna thumb */
+    border-radius: 10px;
+    height: 10px;
+    width: 10px;
+    border: 1px solid var(--secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+    /* Warna thumb saat dihover */
+}
+
+/* Style untuk sudut setengah lingkaran */
+::-webkit-scrollbar-corner {
+    background-color: #f1f1f1;
+    /* Warna latar belakang sudut */
+    border-radius: 0 0 10px 0;
+    /* Bentuk sudut setengah lingkaran */
 }

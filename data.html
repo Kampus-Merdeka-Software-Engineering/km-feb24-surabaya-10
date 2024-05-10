@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SE-Surabaya-team_10</title>
     <link rel="stylesheet" href="css/layout.css">
-    <script src="https://apis.google.com/js/api.js"></script>
+    <link rel="stylesheet" href="css/data.css">
 </head>
 
 <body>
@@ -64,12 +64,41 @@
                 </ul>
             </h5>
         </section>
-        <section id="horizontal"></section>
         <section id="contents">
             <div id="content">
-                <table id="data-table" border="1">
-                    <tbody id="data-body">
-                        <!-- Table rows will be populated dynamically -->
+                <p id="pageInfo"></p>
+                <p id="totalDataInfo"></p>
+                <button id="prevPage">Previous Page</button>
+                <button id="nextPage">Next Page</button>
+                <table id="dataTable" border="1">
+                    <thead>
+                        <tr>
+                            <th>NO</th>
+                            <th>ID</th>
+                            <th>BOROUGH</th>
+                            <th>NEIGHBORHOOD</th>
+                            <th>BUILDING CLASS CATEGORY</th>
+                            <th>TAX CLASS (PRESENT)</th>
+                            <th>BLOCK</th>
+                            <th>LOT</th>
+                            <th>B.CLASS (PRESENT)</th>
+                            <th>ADDRESS</th>
+                            <th>APARTMENT NUMBER</th>
+                            <th>ZIP CODE</th>
+                            <th>RESIDENTIAL UNITS</th>
+                            <th>COMMERCIAL UNITS</th>
+                            <th>TOTAL UNITS</th>
+                            <th>LAND SQUARE FEET</th>
+                            <th>GROSS SQUARE FEET</th>
+                            <th>YEAR BUILT</th>
+                            <th>SALE TAX CLASS</th>
+                            <th>B.CLASS (SALE)</th>
+                            <th>SALE PRICE</th>
+                            <th>SALE_DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dataBody">
+                        <!-- Data rows will be inserted here -->
                     </tbody>
                 </table>
             </div>
@@ -79,6 +108,7 @@
             </footer>
         </section>
     </main>
+    <script src="js/read_data.js"></script>
 </body>
 
 </html>
