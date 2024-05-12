@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <!-- Overlay untuk animasi loading -->
+    <div class="overlay" id="loadingOverlay">
+        <div class="loader"></div> <!-- Animasi loading -->
+        <p>Memuat Data...</p>
+    </div>
+
     <header>
         <nav>
             <img src="assets/img/Revou_Logo.png" alt="" id="logo">
@@ -67,68 +73,8 @@
 
         <section id="contents">
             <div id="content">
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-1">Lorem ipsum dolor sit amet consectetur</div>
-                <div class="card c-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat magni unde sequi
-                    repellat aut non assumenda nesciunt voluptatem corrupti, at, veniam mollitia enim.</div>
-                <div class="card c-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat magni unde sequi
-                    repellat aut non assumenda nesciunt voluptatem corrupti, at, veniam mollitia enim.</div>
-                <div class="card c-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas laudantium,
-                    incidunt voluptate quisquam aperiam quos cum sunt impedit a exercitationem vel enim ipsum labore
-                    eius, corrupti dolor porro neque quae.
-                    Corrupti ut pariatur nesciunt repudiandae quod. Corrupti rem praesentium recusandae, ea beatae natus
-                    aliquid aliquam dolores quae dicta sed illo sapiente est quia laboriosam vero impedit molestias,
-                    reiciendis at hic!
-                    Ab facere veritatis minus laudantium eveniet velit amet, provident voluptates soluta quidem aliquam
-                    adipisci iure accusamus pariatur eligendi, saepe laborum ipsum sequi sint delectus consequatur! Iste
-                    accusantium architecto amet. Sequi?</div>
-                <div class="card c-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat magni unde sequi
-                    repellat aut non assumenda nesciunt voluptatem corrupti, at, veniam mollitia enim.</div>
-                <div class="card c-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas laudantium,
-                    incidunt voluptate quisquam aperiam quos cum sunt impedit a exercitationem vel enim ipsum labore
-                    eius, corrupti dolor porro neque quae.
-                    Corrupti ut pariatur nesciunt repudiandae quod. Corrupti rem praesentium recusandae, ea beatae natus
-                    aliquid aliquam dolores quae dicta sed illo sapiente est quia laboriosam vero impedit molestias,
-                    reiciendis at hic!
-                    Ab facere veritatis minus laudantium eveniet velit amet, provident voluptates soluta quidem aliquam
-                    adipisci iure accusamus pariatur eligendi, saepe laborum ipsum sequi sint delectus consequatur! Iste
-                    accusantium architecto amet. Sequi?</div>
-
-                <div class="card c-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem impedit veniam eos
-                    esse qui accusamus perspiciatis dolorem accusantium, minus nemo exercitationem totam repellendus ea
-                    voluptatibus debitis fugit ab voluptate pariatur?
-                    Sunt id iure, officia delectus obcaecati illum odio, suscipit consequatur libero recusandae
-                    corporis. Officiis laborum amet est nobis! Repellendus sequi repellat earum neque voluptatem tempore
-                    ullam beatae rerum magni minus!
-                    Expedita molestias deleniti laborum, blanditiis saepe aliquid, incidunt praesentium, ea dolor
-                    dolores ullam nobis. Non facilis repellendus perferendis repudiandae beatae commodi quisquam!
-                    Accusamus enim earum aut expedita quis asperiores optio.
-                    Deserunt reprehenderit blanditiis officia reiciendis nisi distinctio, quas quod ea quibusdam
-                    assumenda possimus praesentium explicabo at sit repudiandae sapiente est et unde accusantium ipsam
-                    repellat. Maiores vero corrupti porro esse.
-                    Praesentium modi, id porro ipsa debitis iure ea natus maiores eum dicta. Tempore expedita aut
-                    praesentium quidem delectus sequi perferendis, illo officiis in amet! Tempore amet voluptates
-                    aperiam magnam id!
-                    Repellendus aut quis reiciendis ducimus ipsa cupiditate unde dolores corporis. Porro et dignissimos
-                    deserunt optio temporibus accusamus, ducimus in, omnis fugit ea est pariatur nobis? Maiores officiis
-                    hic laborum soluta.
-                    Aperiam suscipit fuga labore quasi officiis nobis neque et assumenda quod molestias, dolore vitae.
-                    Laudantium perferendis laboriosam autem, tenetur reprehenderit, pariatur suscipit praesentium magnam
-                    dignissimos delectus ullam officiis placeat quis!
-                    Quas, illum id nihil maiores quis quia minus, facilis a, error atque inventore distinctio impedit
-                    ipsum eius? Ratione blanditiis, obcaecati laboriosam minus tenetur libero voluptates quas
-                    voluptatibus fugit? Velit, debitis!
-                    Eum error iste corporis animi itaque laborum laboriosam, nobis architecto odio inventore dolor, non
-                    sequi illo cumque ab cum. Ex repellendus, debitis dignissimos harum minima ab ipsam assumenda nemo
-                    cum!
-                    Accusantium sunt soluta quasi quas nobis eligendi velit autem saepe quibusdam ipsum doloremque, in a
-                    ad, minus alias dolorum esse possimus, perspiciatis explicabo eius. Libero consectetur odio natus
-                    iste omnis?
+                <div class="card c-4">
+                    <canvas id="line_1" class="w-100"></canvas>
                 </div>
             </div>
 
@@ -137,6 +83,8 @@
             </footer>
         </section>
     </main>
+    <script src="node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="js/chart.js"></script>
 
 </body>
 

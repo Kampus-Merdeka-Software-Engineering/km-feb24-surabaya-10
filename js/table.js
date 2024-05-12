@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    const content = document.getElementById('content');
+
+    // Tampilkan animasi loading saat halaman dimuat
+    loadingOverlay.style.display = 'flex'; // Tampilkan overlay
+
+
     const pageSize = 1000;
     let currentPage = 1;
     let data = []; // Simpan semua data di sini
@@ -68,9 +75,15 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:1000/data')
         .then(response => response.json())
         .then(fetchedData => {
+            loadingOverlay.style.display = 'none'; // Sembunyikan overlay
+            content.style.display = 'block';
+
             data = fetchedData; // Simpan data yang diambil dari server
             totalPages = Math.ceil(data.length / pageSize); // Perbarui jumlah halaman
             displayData(currentPage); // Tampilkan data halaman pertama saat halaman dimuat
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            loadingOverlay.style.display = 'none';
+        });
 });
