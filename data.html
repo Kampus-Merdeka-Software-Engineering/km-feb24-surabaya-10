@@ -72,10 +72,47 @@
         </section>
         <section id="contents">
             <div id="content">
-                <p id="pageInfo"></p>
+                <h1>NYC Property Sales Data</h1>
                 <p id="totalDataInfo"></p>
-                <button id="prevPage">Previous Page</button>
-                <button id="nextPage">Next Page</button>
+                <div class="action">
+                    <div class="page">
+                        <button id="prevPage">Previous Page</button>
+                        <span id="pageInfo"></span>
+                        <button id="nextPage">Next Page</button>
+                    </div>
+                    <div class="filter">
+                        <label for="search">search</label>
+                        <input type="text" name="search" id="search">
+                        <select name="filter" id="filter">
+                            <option value="ID">ID</option>
+                            <option value="BOROUGH">BOROUGH</option>
+                            <option value="NEIGHBORHOOD">NEIGHBORHOOD</option>
+                            <option value="BUILDINGCLASSCATEGORY">BUILDING CLASS CATEGORY</option>
+                            <option value='TAXCLASSATPRESENT'>TAX CLASS PRESENT</option>
+                            <option value='BLOCK'>BLOCK</option>
+                            <option value='LOT'>LOT</option>
+                            <option value='BUILDINGCLASSATPRESENT'>BUILDING CLASS PRESENT</option>
+                            <option value='ADDRESS'>ADDRESS</option>
+                            <option value='APARTMENTNUMBER'>APARTMENT NUMBER</option>
+                            <option value='ZIPCODE'>ZIP CODE</option>
+                            <option value='RESIDENTIALUNITS'>RESIDENTIAL UNITS</option>
+                            <option value='COMMERCIALUNITS'>COMMERCIAL UNITS</option>
+                            <option value='TOTALUNITS'>TOTAL UNITS</option>
+                            <option value='LANDSQUAREFEET'>LAND SQUARE FEET</option>
+                            <option value='GROSSSQUAREFEET'>GROSS SQUARE FEET</option>
+                            <option value='YEARBUILT'>YEAR BUILT</option>
+                            <option value='TAXCLASSATTIMEOFSALE'>TAX CLASS AT TIME OF SALE</option>
+                            <option value='BUILDINGCLASSATTIMEOFSALE'>BUILDING CLASS AT TIME OF SALE</option>
+                            <option value='SALEPRICE'>SALE PRICE</option>
+                            <option value='SALEDATE'>SALE DATE</option>
+                        </select>
+                        <select name="sortOrder" id="sortOrder">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+
+                    </div>
+                </div>
                 <table id="dataTable" border="1">
                     <thead>
                         <tr>
