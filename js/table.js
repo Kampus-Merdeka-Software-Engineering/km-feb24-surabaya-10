@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
             content.style.display = 'block';
 
             originalData = fetchedData; // Simpan data asli yang diambil dari server
-            totalPages = Math.ceil(originalData.length / pageSize); // Perbarui jumlah halaman
-            displayData(currentPage, originalData); // Tampilkan data halaman pertama saat halaman dimuat
+            filteredData = originalData; // Inisialisasi filteredData dengan originalData
+            totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
+            displayData(currentPage, filteredData); // Tampilkan data halaman pertama saat halaman dimuat
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -70,6 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Perbarui informasi halaman dan jumlah data
         document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
         document.getElementById('totalDataInfo').textContent = `Total Data: ${dataToDisplay.length}`;
+
+        // Perbarui kondisi tombol
+        document.getElementById('prevPage').disabled = currentPage === 1;
+        document.getElementById('nextPage').disabled = currentPage === totalPages;
     }
 
     // Event listener untuk tombol Next Page
