@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/RIF-creativity/SE-Surabaya-team_10#readme",
   "dependencies": {
-    "chart.js": "^4.4.2",
+    "chart.js": "^4.4.3",
     "express": "^4.19.2",
     "googleapis": "^136.0.0"
   }

@@ -32,22 +32,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return months[monthNumber - 1]; // Bulan dimulai dari indeks 0
     }
 
-    // Fungsi untuk menghitung jumlah data dengan bulan dan tahun yang sama
-    function countDataByMonthAndYear(data) {
-        const countsale = {};
-        data.forEach(item => {
-            if (item.SALEDATE) {
-                const saleDate = item.SALEDATE.split(' ')[0]; // Ambil bagian tanggal saja (yyyy-mm-dd)
-                const [year, month] = saleDate.split('-'); // Pisahkan tahun dan bulan
-                const monthName = getMonthName(parseInt(month)); // Dapatkan nama bulan dari angka bulan
-                const key = `${monthName} ${year}`; // Gabungkan bulan dan tahun sebagai kunci
-                countsale[key] = (countsale[key] || 0) + 1; // Tambahkan jumlah data dengan kunci yang sama
-            } else {
-                console.warn('Invalid SALEDATE format:', item.SALEDATE);
-            }
-        });
-        return countsale;
-    }
+  // Fungsi untuk menghitung jumlah data dengan bulan dan tahun yang sama
+function countDataByMonthAndYear(data) {
+    const countsale = {};
+    data.forEach(item => {
+        if (item.SALE_DATE) {
+            const saleDate = item.SALE_DATE.split(' ')[0]; // Ambil bagian tanggal saja (dd/mm/yyyy)
+            const [day, month, year] = saleDate.split('/'); // Pisahkan hari, bulan, dan tahun
+            const monthName = getMonthName(parseInt(month)); // Dapatkan nama bulan dari angka bulan
+            const key = `${monthName} ${year}`; // Gabungkan bulan dan tahun sebagai kunci
+            countsale[key] = (countsale[key] || 0) + 1; // Tambahkan jumlah data dengan kunci yang sama
+        } else {
+            console.warn('Invalid SALE_DATE format:', item.SALE_DATE);
+        }
+    });
+
+    // Ubah objek countsale menjadi array untuk diurutkan
+    const sortedCountSale = Object.entries(countsale).sort((a, b) => {
+        const [monthA, yearA] = a[0].split(' ');
+        const [monthB, yearB] = b[0].split(' ');
+        const dateA = new Date(`${monthA} 1, ${yearA}`);
+        const dateB = new Date(`${monthB} 1, ${yearB}`);
+        return dateA - dateB;
+    });
+
+    // Ubah array kembali menjadi objek yang diurutkan
+    const orderedCountSale = {};
+    sortedCountSale.forEach(([key, value]) => {
+        orderedCountSale[key] = value;
+    });
+
+    return orderedCountSale;
+}
 
     // Fungsi untuk membuat chart
     function createChart(countsale) {

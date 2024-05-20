@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 // Definisikan endpoint untuk menyajikan data JSON
 app.get('/data', (req, res) => {
     // Path file JSON yang benar sesuai dengan struktur proyek Anda
-    const filePath = path.join(__dirname, '../assets/data/nyc.json');
+    const filePath = path.join(__dirname, '../assets/data/dwellings.json');
     try {
         const data = fs.readFileSync(filePath, 'utf8');
         res.json(JSON.parse(data));
