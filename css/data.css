@@ -1,18 +1,35 @@
 table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 0.8vw;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8vw;
+}
+#dataTable thead {
+  background-color: rgb(236, 195, 83); /* Warna latar belakang */
 }
 
 th,
 td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
 }
 
 .action {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.action .filter input[type="text"] {
+  border: 1px solid black; /* Atur warna border sesuai kebutuhan */
+  border-radius: 13px; /* Setengah dari tinggi elemen untuk bentuk oval */
+  padding: 2px 12px; /* Atur padding sesuai kebutuhan */
+  font-size: 13px; /* Atur ukuran font sesuai kebutuhan */
+}
+
+.action .filter select {
+  border: 1px solid black; /* Atur warna border sesuai kebutuhan */
+  border-radius: 13px; /* Setengah dari tinggi elemen untuk bentuk oval */
+  padding: 2px 12px; /* Atur padding sesuai kebutuhan */
+  font-size: 13px; /* Atur ukuran font sesuai kebutuhan */
 }
