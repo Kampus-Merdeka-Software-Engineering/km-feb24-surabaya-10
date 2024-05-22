@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             i++;
             const row = document.createElement('tr');
             row.innerHTML += `
+                <td>${i}</td>
                 <td>${item['BOROUGH']}</td>
                 <td>${item['NEIGHBORHOOD']}</td>
                 <td>${item['BUILDING_CLASS_CATEGORY']}</td>

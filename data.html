@@ -72,14 +72,17 @@
         </section>
         <section id="contents">
             <div id="content">
-                <h1>NYC Property Sales Data</h1>
-                <p id="totalDataInfo"></p>
                 <div class="action">
-                    <div class="page">
-                        <button id="prevPage">Previous Page</button>
-                        <span id="pageInfo"></span>
-                        <button id="nextPage">Next Page</button>
+                    <div>
+                        <h1>NYC Property Sales Data</h1>
+                        <p id="totalDataInfo"></p>
+                        <div class="page">
+                            <button id="prevPage">Previous Page</button>
+                            <span id="pageInfo"></span>
+                            <button id="nextPage">Next Page</button>
+                        </div>
                     </div>
+
                     <div class="filter">
                         <label for="search">search</label>
                         <input type="text" name="search" id="search">
@@ -115,6 +118,7 @@
                 <table id="dataTable" border="1">
                     <thead>
                         <tr>
+                            <th>NO</th>
                             <th>BOROUGH</th>
                             <th>NEIGHBORHOOD</th>
                             <th>BUILDING CLASS CATEGORY</th>
