@@ -1,12 +1,69 @@
-table {
-  border-collapse: collapse;
-  width: 100%;
-  font-size: 0.8vw;
+button {
+  background-color: #FFDE3E;
+  color: #1C2833;
+
+  /* Ubah warna teks tombol */
+  padding: 10px 20px;
+  border: 1px solid #1C2833;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-th,
-td {
-  border: 1px solid black;
+button:hover {
+  background-color: #1C2833;
+  /* Ubah warna latar belakang tombol */
+  color: white;
+  /* Ubah warna latar belakang tombol saat mouse di hover */
+}
+
+.filter {
+  background-color: #f7f7f7;
+  /* Ubah warna latar belakang filter */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 25vw;
+  /* Ubah lebar filter */
+  margin: 10px;
+}
+
+.filter label {
+  font-weight: bold;
+  /* Ubah teks label menjadi tebal */
+  margin-right: 10px;
+}
+
+.filter input[type="text"] {
+  width: 20vw;
+  /* Ubah lebar input text */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+.filter select {
+  width: auto;
+  /* Ubah lebar select */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f2f2f2;
+  /* Ubah warna latar belakang tabel */
+  color: #333;
+  /* Ubah warna teks */
+}
+
+#dataTable th,
+#dataTable td {
+  border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
@@ -32,26 +89,4 @@ td {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
-}
-
-.action .filter input[type="text"] {
-  border: 1px solid black;
-  /* Atur warna border sesuai kebutuhan */
-  border-radius: 13px;
-  /* Setengah dari tinggi elemen untuk bentuk oval */
-  padding: 2px 12px;
-  /* Atur padding sesuai kebutuhan */
-  font-size: 13px;
-  /* Atur ukuran font sesuai kebutuhan */
-}
-
-.action .filter select {
-  border: 1px solid black;
-  /* Atur warna border sesuai kebutuhan */
-  border-radius: 13px;
-  /* Setengah dari tinggi elemen untuk bentuk oval */
-  padding: 2px 12px;
-  /* Atur padding sesuai kebutuhan */
-  font-size: 13px;
-  /* Atur ukuran font sesuai kebutuhan */
 }
