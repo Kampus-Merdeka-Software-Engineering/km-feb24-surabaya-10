@@ -1,6 +1,6 @@
 button {
   background-color: #FFDE3E;
-  color: #1C2833;
+  color: #1c2833;
 
   /* Ubah warna teks tombol */
   padding: 10px 20px;
@@ -9,6 +9,7 @@ button {
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+
 }
 
 button:hover {
