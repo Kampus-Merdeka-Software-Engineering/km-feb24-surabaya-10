@@ -6,6 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SE-Surabaya-team_10</title>
     <link rel="stylesheet" href="css/layout.css">
+
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .member {
+            margin: 10px;
+        }
+
+        .member-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .member-info {
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -64,25 +99,117 @@
             </h5>
         </section>
         <section id="contents">
-            <div id="content">content</div>
             <div id="content">
-                    </section>
-                    <div id="details-modal" class="modal">
-                        <div class="modal-content">
-                            <span class="close" onclick="closeModal()">&times;</span>
-                            <div id="modal-body"></div>
-                        </div>
-                    </div>
-                    <script src="scripts.js"></script>
-                </body>
-                </html>
-              </div>
 
-            <footer>
-                &copy; 2024, RevoU. Capstone Project Software Engineering by Team 10-Surabaya
-            </footer>
+                <title>Member Group</title>
+                </head>
+
+                <body>
+
+                    <div class="container">
+                        <h1>Our Member Team</h1>
+                        <div class="members">
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Ian Syadewa" class="member-img" onclick="showInfo(1)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Miil Saputri" class="member-img" onclick="showInfo(2)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Roudhotulloh Nazakhan" class="member-img" onclick="showInfo(3)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Rifki Hamdani" class="member-img" onclick="showInfo(4)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Zaidan Adli Wibawa" class="member-img" onclick="showInfo(5)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Anni Kholilah" class="member-img" onclick="showInfo(6)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Ezra Anang Yudhistira" class="member-img" onclick="showInfo(7)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Siti Rohanah" class="member-img" onclick="showInfo(8)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Iren Yolanda Sitompul" class="member-img" onclick="showInfo(9)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Imaroh Alawiyah" class="member-img" onclick="showInfo(10)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Nurani Gita Safitri" class="member-img" onclick="showInfo(11)">
+                            </div>
+                            <div class="member">
+                                <img src="https://static-00.iconduck.com/assets.00/profile-icon-512x512-w0uaq4yr.png"
+                                    alt="Karan Bagas Adrian" class="member-img" onclick="showInfo(12)">
+                            </div>
+                        </div>
+                        <div id="member-info" class="member-info"></div>
+                    </div>
+
+                    <script src="member.js"></script>
+                </body>
+
+            </div>
+            <div id="content">
         </section>
-    </main>
+        <div id="details-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+        <script>
+            function showInfo(memberId) {
+                // Informasi anggota
+                var membersInfo = [
+                    { name: "Ian Syadewa", info: "Project Leader" },
+                    { name: "Miil Saputri", info: "Front End Engineer" },
+                    { name: "Roudhotulloh Nazakhan", info: "Front End Engineer" },
+                    { name: "Rifki Hamdani", info: "Front End Engineer" },
+                    { name: "Zaidan Adli Wibawa", info: "Front End Engineer" },
+                    { name: "Anni Kholilah", info: "Deployment Team" },
+                    { name: "Ezra Anang Yudhistira", info: "Pitch Deck Team" },
+                    { name: "Siti Rohanah", info: "Pitch Deck Team" },
+                    { name: "Iren Yolanda Sitompul", info: "Pitch Deck Team" },
+                    { name: "Imaroh Alawiyah", info: "Quality Assurance" },
+                    { name: "Nurani Gita Safitri", info: "Quality Assurance" },
+                    { name: "Karan Bagas Adrian", info: "Quality Assurance" }
+                ];
+
+                // Ambil informasi anggota berdasarkan memberId
+                var member = membersInfo[memberId - 1];
+
+                // Tampilkan informasi
+                var memberInfoElement = document.getElementById("member-info");
+                memberInfoElement.innerHTML = "<h2>" + member.name + "</h2><p>" + member.info + "</p>";
+            }
+
+        </script>
+</body>
+
+</html>
+</div>
+
+<footer>
+    &copy; 2024, RevoU. Capstone Project Software Engineering by Team 10-Surabaya
+</footer>
+</section>
+</main>
 
 </body>
 
