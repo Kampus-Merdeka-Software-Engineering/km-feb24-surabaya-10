@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Initialize charts with all data
             displayTotalRevenue(calculateTotalRevenue(data));
             displayTotalTransaction(countTotalTransaction(data));
-            createLineChart(countDataByMonthAndYear(data));
+            createDoughnutChartBorough(countSalesByBorough(data))
             createBarChartBorough(countSalesByBorough(data));
             createBarChartClassCategory(calculateRevenueByBuildingClass(data));
         })
@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         displayTotalRevenue(calculateTotalRevenue(filteredData));
         displayTotalTransaction(countTotalTransaction(filteredData));
-        createLineChart(countDataByMonthAndYear(filteredData));
         createBarChartBorough(countSalesByBorough(filteredData));
         createBarChartClassCategory(calculateRevenueByBuildingClass(filteredData));
     });
@@ -84,65 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         countElement.textContent = count.toLocaleString();
     }
 
-    function countDataByMonthAndYear(data) {
-        const countsale = {};
-        data.forEach(item => {
-            if (item.SALE_DATE) {
-                const saleDate = item.SALE_DATE.split(' ')[0];
-                const [day, month, year] = saleDate.split('/');
-                const monthName = getMonthName(parseInt(month));
-                const key = `${monthName} ${year}`;
-                countsale[key] = (countsale[key] || 0) + 1;
-            }
-        });
-
-        const sortedCountSale = Object.entries(countsale).sort((a, b) => {
-            const [monthA, yearA] = a[0].split(' ');
-            const [monthB, yearB] = b[0].split(' ');
-            const dateA = new Date(`${monthA} 1, ${yearA}`);
-            const dateB = new Date(`${monthB} 1, ${yearB}`);
-            return dateA - dateB;
-        });
-
-        const orderedCountSale = {};
-        sortedCountSale.forEach(([key, value]) => {
-            orderedCountSale[key] = value;
-        });
-
-        return orderedCountSale;
-    }
-
-    function getMonthName(monthNumber) {
-        const months = [
-            'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-        ];
-        return months[monthNumber - 1];
-    }
-
-    function createLineChart(countsale) {
-        const ctx = document.getElementById("line-chart").getContext('2d');
-        if (window.lineChart !== undefined) {
-            window.lineChart.destroy();
-        }
-
-        const labels = Object.keys(countsale);
-        const dataValues = Object.values(countsale);
-
-        window.lineChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Data Penjualan',
-                    data: dataValues,
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)'
-                }]
-            }
-        });
-    }
-
     function countSalesByBorough(data) {
         const countsale = {};
         data.forEach(item => {
@@ -179,6 +119,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 scales: {
                     y: {
                         beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    function createDoughnutChartBorough(countsale) {
+        const ctx = document.getElementById("doughnut-chart-borough").getContext('2d');
+        if (window.doughnutChartBorough !== undefined) {
+            window.doughnutChartBorough.destroy();
+        }
+
+        const labels = Object.keys(countsale);
+        const dataValues = Object.values(countsale);
+        window.doughnutChartBorough = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '',
+                    data: dataValues,
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)',
+                        'rgb(25, 20, 86)',
+                        'rgb(155, 5, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            }, options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            generateLabels: function (chart) {
+                                return [];
+                            }
+                        }
                     }
                 }
             }

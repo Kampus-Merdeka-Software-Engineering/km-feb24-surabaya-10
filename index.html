@@ -7,7 +7,6 @@
     <title>SE-Surabaya-team_10</title>
     <link rel="stylesheet" href="./css/layout.css">
     <link rel="stylesheet" href="./css/dashboard.css">
-    <link rel="stylesheet" href="./css/dash.css">
 </head>
 
 <body>
@@ -75,49 +74,57 @@
 
         <section id="contents">
             <div id="grid-container">
-                <h2>Dwelling Sale Analitic
-                    <div class="dropdown">
-                        <section class="menu" id="dropdown-section">
-                            <select id="borough-dropdown"></select>
-                        </section>
-                    </div>
-                </h2>
                 <div class="stats-container">
-                    <section class="section" id="total-revenue-section">
-                        <h2 class="section__title">Total Revenue: </h2>
-                        <h1 class="section__total-revenue" id="total-revenue"></h1>
-                    </section>
-                    <section class="section" id="total-transaction-section">
-                        <h2 class="section__title">Total Transaction:</h2>
-                        <h1 class="section__total-transaction" id="total-transaction"></h1>
-                    </section>
+                    <div class="section">
+                        <h2 class="section__title">Penjualan per Priode Waktu</h2>
+                        <span class="filter">
+                            <!-- filter dwellings -->
+                            <select id="filter">
+                                <option value="">Semua</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                            </select>
+                        </span>
+                    </div>
+                    <div class="section">
+                        <h4 class="section__title">Penjualan Semua Properti</h4>
+                        <canvas id="sale" width="44.5vw" height="15vh"></canvas>
+                    </div>
+                    <div class="section">
+                        <h4 class="section__title">Penjualan Dwellings</h4>
+                        <canvas id="dwellingsSale" width="44.5vw" height="15vh"></canvas>
+                    </div>
                 </div>
-                <div class="section">
-                    <h2 class="section__title">Penjualan per Bulan</h2>
-
-                    <span class="filter">
-                        <!-- filter dwellings -->
-                        <select id="filter">
-                            <option value="">Semua</option>
-                            <option value="2016">2016</option>
-                            <option value="2017">2017</option>
-                        </select>
-                    </span>
-                    <canvas id="sale" width="44.5vw" height="12vh"></canvas>
-                    <canvas id="dwellingsSale" width="44.5vw" height="12vh"></canvas>
+                <div class="stats-container">
+                    <div class="filter section" id="dropdown-section">
+                        <h2 class="section__title">Penjualan Dwellings per wilayah</h2>
+                        <select id="borough-dropdown"></select>
+                    </div>
+                    <div class="stats">
+                        <div class="section" id="total-revenue-section">
+                            <h4 class="section__title">Total Revenue: </h4>
+                            <h1 class="section__total-revenue" id="total-revenue"></h1>
+                        </div>
+                        <div class="section" id="total-transaction-section">
+                            <h4 class="section__title">Total Transaction:</h4>
+                            <h1 class="section__total-transaction" id="total-transaction"></h1>
+                        </div>
+                        <div class="section" id="sales-by-borough-section">
+                            <h4 class="section__title">Statistik Persebaran .</h4>
+                            <canvas id="doughnut-chart-borough" class="section__chart" width="15vw"
+                                height="auto"></canvas>
+                        </div>
+                    </div>
+                    <div class="section" id="sales-by-borough-section">
+                        <h4 class="section__title">Total Penjualan per Borough</h4>
+                        <canvas id="bar-chart-borough" class="section__chart" width="44vw" height="19vh"></canvas>
+                    </div>
                 </div>
 
-                <section class="section" id="sales-by-month-year-section">
-                    <canvas id="line-chart" class="section__chart" width="1800" height="500"></canvas>
-                </section>
-                <section class="section" id="sales-by-borough-section">
-                    <h2 class="section__title">Total Penjualan per Borough</h2>
-                    <canvas id="bar-chart-borough" class="section__chart" width="400" height="200"></canvas>
-                </section>
-                <section class="section" id="revenue-by-class-category-section">
+                <div class="section" id="revenue-by-class-category-section">
                     <h2 class="section__title">Total Revenue per Class Category</h2>
                     <canvas id="bar-chart-class-category" class="section__chart" width="400" height="200"></canvas>
-                </section>
+                </div>
             </div>
             <footer>
                 &copy; 2024, RevoU. Capstone Project Software Engineering by Team 10-Surabaya
