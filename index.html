@@ -7,6 +7,7 @@
     <title>SE-Surabaya-team_10</title>
     <link rel="stylesheet" href="./css/layout.css">
     <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./css/dash.css">
 </head>
 
 <body>
@@ -75,6 +76,25 @@
         <section id="contents">
             <div id="grid-container">
                 <h2>Dwelling Sale Analitic
+                    <div class="dropdown">
+                        <section class="menu" id="dropdown-section">
+                            <select id="borough-dropdown"></select>
+                        </section>
+                    </div>
+                </h2>
+                <div class="stats-container">
+                    <section class="section" id="total-revenue-section">
+                        <h2 class="section__title">Total Revenue: </h2>
+                        <h1 class="section__total-revenue" id="total-revenue"></h1>
+                    </section>
+                    <section class="section" id="total-transaction-section">
+                        <h2 class="section__title">Total Transaction:</h2>
+                        <h1 class="section__total-transaction" id="total-transaction"></h1>
+                    </section>
+                </div>
+                <div class="section">
+                    <h2 class="section__title">Penjualan per Bulan</h2>
+
                     <span class="filter">
                         <!-- filter dwellings -->
                         <select id="filter">
@@ -83,30 +103,28 @@
                             <option value="2017">2017</option>
                         </select>
                     </span>
-                </h2>
-                <h2>statistik</h2>
-                <div class="card c-1">
                     <canvas id="sale" width="44.5vw" height="12vh"></canvas>
-                </div>
-                <div class="card c-2">
                     <canvas id="dwellingsSale" width="44.5vw" height="12vh"></canvas>
                 </div>
-                <div class="card">
-                    <canvas></canvas>
-                </div>
-                <div class="card">
-                    <canvas></canvas>
-                </div>
-                <div class="card">
-                    <canvas></canvas>
-                </div>
 
+                <section class="section" id="sales-by-month-year-section">
+                    <canvas id="line-chart" class="section__chart" width="1800" height="500"></canvas>
+                </section>
+                <section class="section" id="sales-by-borough-section">
+                    <h2 class="section__title">Total Penjualan per Borough</h2>
+                    <canvas id="bar-chart-borough" class="section__chart" width="400" height="200"></canvas>
+                </section>
+                <section class="section" id="revenue-by-class-category-section">
+                    <h2 class="section__title">Total Revenue per Class Category</h2>
+                    <canvas id="bar-chart-class-category" class="section__chart" width="400" height="200"></canvas>
+                </section>
             </div>
             <footer>
                 &copy; 2024, RevoU. Capstone Project Software Engineering by Team 10-Surabaya
             </footer>
         </section>
     </main>
+    <script src="js/dash.js"></script>
     <script src="node_modules/chart.js/dist/chart.umd.js"></script>
     <script src="js/chart.js"></script>
 

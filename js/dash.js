@@ -1,17 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loadingOverlay = document.querySelector('.loading-overlay');
-    const content = document.querySelector('.content');
+
     const boroughDropdown = document.getElementById('borough-dropdown');
     let data = [];
 
-    loadingOverlay.style.display = 'flex';
 
     fetch('http://localhost:1000/data')
         .then(response => response.json())
         .then(fetchedData => {
             data = fetchedData;
-            loadingOverlay.style.display = 'none';
-            content.style.display = 'block';
 
             // Menambahkan opsi "Semua Boroughs"
             const allOption = document.createElement('option');
@@ -35,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            loadingOverlay.style.display = 'none';
         });
 
     boroughDropdown.addEventListener('change', () => {
