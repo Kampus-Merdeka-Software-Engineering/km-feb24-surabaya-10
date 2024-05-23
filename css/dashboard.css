@@ -1,44 +1,44 @@
-#contents {
+#grid-container {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 49% 49%;
+    grid-gap: 1%;
+    overflow: hidden;
+    padding: 5px;
+    justify-content: center;
+
+}
+
+#contents {
     overflow-x: hidden;
 }
 
-#content {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
-    grid-gap: 10px;
-}
-
 .card {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 10px;
-}
-
-.card canvas {
-    width: 50%;
-    height: 30px;
-}
-
-.filter {
-    background-color: #f7f7f7;
-    padding: 10px;
-    border: 1px solid #ddd;
+    background-color: white;
+    border: 1px solid #1c28332d;
     border-radius: 5px;
-    width: 250px;
-    margin: 10px;
+    padding: 10px;
+    max-height: 25vh;
 }
 
-.filter label {
-    font-weight: bold;
-    margin-right: 10px;
+.c-1 {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+}
+
+.c-2 {
+    grid-row: 2 / 3;
+    grid-column: 2/2;
+}
+
+#content h1 {
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
 
 .filter select {
-    width: 150px;
-    height: 30px;
+    width: auto;
+    /* Ubah lebar select */
+    margin-left: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;

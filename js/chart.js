@@ -1,8 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const SaleChart = document.getElementById("sale").getContext("2d");
+    const dwellingsChart = document.getElementById("dwellingsSale").getContext("2d");
     const loadingOverlay = document.getElementById('loadingOverlay');
-    const content = document.getElementById('content');
+    const content = document.getElementById('contents');
     const filter = document.getElementById('filter');
     // Tampilkan animasi loading saat halaman dimuat
     loadingOverlay.style.display = 'flex'; // Tampilkan overlay
@@ -15,18 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingOverlay.style.display = 'none'; // Sembunyikan overlay
             content.style.display = 'block'; // Tampilkan konten utama
             data = fetchedData; // Simpan data yang diambil dari server
-            dwellings = DweliingsData(data);
-            let chart = LineChart(SaleChart, countDataByMonthAndYear(data), countDataByMonthAndYear(dwellings));
+            dwellings = DwellingsData(data);
+
+            let chartSaleAll = LineChart('All NYC data property sale', SaleChart, countDataByMonthAndYear(data));
+            let chartSaleDwellings = LineChart('Dwellings Sales', dwellingsChart, countDataByMonthAndYear(dwellings));
             filter.addEventListener('change', () => {
                 let value = filter.value;
                 const filteredData = countDataByMonthAndYear(FilterData(data, value));
                 const filteredDwellingsData = countDataByMonthAndYear(FilterData(dwellings, value));
-                console.log(filteredData);
-                chart.data.labels = Object.keys(filteredData); // Perbarui labels
-                chart.data.datasets[0].data = Object.values(filteredData); // Perbarui data
-                chart.data.datasets[1].data = Object.values(filteredDwellingsData); // Perbarui data
-                chart.update(); // Perbarui chart
 
+                chartSaleAll.data.labels = Object.keys(filteredData); // Perbarui labels
+                chartSaleAll.data.datasets[0].data = Object.values(filteredData); // Perbarui data
+                chartSaleAll.update(); // Perbarui chart
+
+                chartSaleDwellings.data.labels = Object.keys(filteredDwellingsData); // Perbarui labels
+                chartSaleDwellings.data.datasets[0].data = Object.values(filteredDwellingsData); // Perbarui data
+                chartSaleDwellings.update(); // Perbarui chart
             });
             // Panggil fungsi untuk membuat chart setelah data diterima
         })
@@ -36,26 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 });
 // Fungsi untuk membuat line chart
-function LineChart(ChartID, AllData, DweliingsData) {
+function LineChart(ChartName, ChartID, AllData) {
 
     const labels = Object.keys(AllData); // Ambil kunci dari objek AllData sebagai label
     const dataValues = Object.values(AllData); // Ambil nilai dari objek AllData sebagai data
-    const dataDwellings = Object.values(DweliingsData); // Ambil nilai dari objek AllData sebagai data
-
     let ChartLine = new Chart(ChartID, {
         type: 'line',
         data: {
             labels: labels,
             datasets: [
                 {
-                    label: 'All sale',
+                    label: ChartName,
                     data: dataValues,
-                    fill: false,
-                    borderColor: '#1c283337',
-                },
-                {
-                    label: 'Dwellings sale',
-                    data: dataDwellings,
                     fill: false,
                     borderColor: '#FFDE3E',
                 }
@@ -106,7 +102,7 @@ function countDataByMonthAndYear(data) {
 }
 
 
-function DweliingsData(data) {
+function DwellingsData(data) {
     const result = data.filter(dataset => dataset.BUILDINGCLASSCATEGORY.includes("DWELLINGS"));
     return result;
 }
