@@ -1,11 +1,11 @@
 // Variabel global untuk menyimpan pop-up yang saat ini terbuka
 let openPopup = null;
 
-// Get all mentor dan team member elements
+// Mendapatkan semua elemen mentor dan anggota tim
 const mentors = document.querySelectorAll('.mentor');
 const teamMembers = document.querySelectorAll('.team-member');
 
-// Add event listener to each mentor element
+// Menambahkan event listener ke setiap elemen mentor
 mentors.forEach((mentor, index) => {
   mentor.addEventListener('click', () => {
     // Tutup pop-up yang saat ini terbuka (jika ada)
@@ -13,18 +13,18 @@ mentors.forEach((mentor, index) => {
       openPopup.style.display = 'none';
     }
 
-    // Get the corresponding popup element
+    // Mendapatkan elemen popup yang sesuai
     const popupId = `mentorPopup-${index + 1}`;
     const popup = document.getElementById(popupId);
-    // Show the popup
+    // Menampilkan pop-up
     popup.style.display = 'block';
 
-    // Simpan pop-up yang saat ini terbuka
+    // Menyimpan pop-up yang saat ini terbuka
     openPopup = popup;
   });
 });
 
-// Add event listener to each team member element
+// Menambahkan event listener ke setiap elemen anggota tim
 teamMembers.forEach((teamMember, index) => {
   teamMember.addEventListener('click', () => {
     // Tutup pop-up yang saat ini terbuka (jika ada)
@@ -32,23 +32,23 @@ teamMembers.forEach((teamMember, index) => {
       openPopup.style.display = 'none';
     }
 
-    // Get the corresponding popup element
+    // Mendapatkan elemen popup yang sesuai
     const popupId = `popup-${index + 1}`;
     const popup = document.getElementById(popupId);
-    // Show the popup
+    // Menampilkan pop-up
     popup.style.display = 'block';
 
-    // Simpan pop-up yang saat ini terbuka
+    // Menyimpan pop-up yang saat ini terbuka
     openPopup = popup;
   });
 });
 
-// Add event listener to close icon in each popup
+// Menambahkan event listener ke ikon tutup di setiap pop-up
 document.querySelectorAll('.close-icon').forEach((closeIcon) => {
   closeIcon.addEventListener('click', () => {
-    // Get the parent popup element
+    // Mendapatkan elemen pop-up induk
     const popup = closeIcon.parentNode.parentNode;
-    // Hide the popup
+    // Menyembunyikan pop-up
     popup.style.display = 'none';
 
     // Reset variabel global

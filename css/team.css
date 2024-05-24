@@ -5,7 +5,7 @@
 }
 
 section {
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 h2 {
@@ -15,10 +15,10 @@ h2 {
 
 .mentor-container {
   display: flex;
-  justify-content: center; /* Centers the mentors */
-  gap: 40px; /* Adjusts the space between mentors */
+  justify-content: center;
+  gap: 40px;
   max-width: 60vw;
-  margin: 0 auto; /* Centers the container */
+  margin: 0 auto;
 }
 
 .mentor {
@@ -39,8 +39,8 @@ h2 {
 }
 
 .mentor-profile img {
-  width: 7vw; /* Changed to 10vw */
-  height: 7vw; /* Changed to 10vw */
+  width: 7vw;
+  height: 7vw;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
@@ -63,6 +63,7 @@ h2 {
   justify-content: space-around;
   gap: 15px;
   margin-bottom: 5px;
+  justify-content: center;
 }
 
 .team-member {
@@ -79,16 +80,17 @@ h2 {
   cursor: pointer;
 }
 
+/* Popup */
 .popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 25vw; /* sets the width of the pop-up window */
-  height: 50vh; /* sets the height of the pop-up window */
+  display: none; /* Menyembunyikan popup secara default */
+  position: fixed; /* Posisi tetap di layar */
+  top: 50%; /* Jarak atas 50% dari layar */
+  left: 50%; /* Jarak kiri 50% dari layar */
+  transform: translate(-50%, -50%); /* Menggeser popup ke tengah */
+  width: 25vw;
+  height: 50vh;
   background-color: #f5f5f5;
-  padding: 20px 20px;
+  padding: 20px 20px; /* Padding atas/bawah 20px, kiri/kanan 20px */
   border-radius: 10px;
   box-shadow: 1 1 10px rgba(0, 0, 0, 0.2);
   border: 1.5px solid #110909;
@@ -97,16 +99,22 @@ h2 {
 .popup-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 100%; /* sets the height of the pop-up-content to 100% of the pop-up window */
-  justify-content: center; /* centers the content vertically */
+  align-items: center; /* Menjajarkan konten ke tengah secara horizontal */
+  height: 100%;
+  justify-content: center; /* Menjajarkan konten ke tengah secara vertikal */
+}
+
+.popup-content p {
+  text-align: left; /* Teks di dalam elemen rata kiri */
+  margin: 8px 0;
+  width: 100%;
 }
 
 .popup-content img {
-  width: 10vw;
-  height: 20vh;
+  width: 10vw; /* Lebar 10% dari viewport */
+  height: 20vh; /* Tinggi 20% dari viewport */
   border-radius: 50%;
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Margin bawah 10px */
 }
 
 .close-icon {
@@ -116,9 +124,9 @@ h2 {
   font-size: 35px;
   font-weight: bold;
   cursor: pointer;
-  color: #ebbb37; /* changes the color of the close icon to tomato */
+  color: #ebbb37;
   border-radius: 50%;
-  padding: 5px; /* adds some padding to the close icon */
+  padding: 5px;
 }
 
 /* Ensure responsive layout */
