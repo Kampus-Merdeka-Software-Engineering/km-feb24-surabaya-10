@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let filteredData = []; // Simpan data hasil pencarian di sini
 
     // Mengambil data JSON
-    fetch('http://localhost:1000/data')
+    fetch('assets/data/dwellings.json')
         .then(response => response.json())
         .then(fetchedData => {
             loadingOverlay.style.display = 'none'; // Sembunyikan overlay
@@ -97,17 +97,37 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Enter') {
             const searchTerm = document.getElementById('search').value.toLowerCase();
             const filterBy = document.getElementById('filter').value;
-
+    
             filteredData = originalData.filter(item => {
                 const fieldValue = item[filterBy].toString().toLowerCase();
                 return fieldValue.includes(searchTerm);
             });
-
-            currentPage = 1; // Kembalikan ke halaman pertama setelah pencarian
-            totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
-            displayData(currentPage, filteredData); // Tampilkan data hasil pencarian
+    
+            if (filteredData.length === 0) {
+                document.getElementById('noResultsModal').style.display = 'block';
+            } else {
+                currentPage = 1; // Kembalikan ke halaman pertama setelah pencarian
+                totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
+                displayData(currentPage, filteredData); // Tampilkan data hasil pencarian
+            }
         }
     });
+    
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('noResultsModal').style.display = 'none';
+    });
+    
+    document.getElementById('closeButton').addEventListener('click', () => {
+        document.getElementById('noResultsModal').style.display = 'none';
+    });
+    
+    window.addEventListener('click', event => {
+        if (event.target === document.getElementById('noResultsModal')) {
+            document.getElementById('noResultsModal').style.display = 'none';
+        }
+    });
+    
+       
 
     // Event listener untuk perubahan pada filter atau urutan pengurutan
     document.getElementById('filter').addEventListener('change', updateDisplayedData);
