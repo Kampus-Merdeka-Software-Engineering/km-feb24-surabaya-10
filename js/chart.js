@@ -1,112 +1,154 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const SaleChart = document.getElementById("sale").getContext("2d");
-    const dwellingsChart = document.getElementById("dwellingsSale").getContext("2d");
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const content = document.getElementById('contents');
-    const filter = document.getElementById('filter');
-    // Tampilkan animasi loading saat halaman dimuat
-    loadingOverlay.style.display = 'flex'; // Tampilkan overlay
+import data from '../assets/data/nyc.json' with {type: 'json'}; // Sesuaikan dengan path yang benar
+//daftar canvas
+const SaleChart = document.getElementById("sale").getContext("2d");
+const dwellingsChart = document.getElementById("dwellingsSale").getContext("2d");
+const BoroughChart = document.getElementById('bar-chart-borough');
+const classChart = document.getElementById('bar-chart-class-category')
 
-    // Fungsi pengambil data dari JSON
-    let data = [];
-    fetch('http://localhost:1000/dataset')
-        .then(response => response.json())
-        .then(fetchedData => {
-            loadingOverlay.style.display = 'none'; // Sembunyikan overlay
-            content.style.display = 'block'; // Tampilkan konten utama
-            data = fetchedData; // Simpan data yang diambil dari server
-            dwellings = DwellingsData(data);
 
-            let chartSaleAll = LineChart('All NYC data property sale', SaleChart, countDataByMonthAndYear(data));
-            let chartSaleDwellings = LineChart('Dwellings Sales', dwellingsChart, countDataByMonthAndYear(dwellings));
-            filter.addEventListener('change', () => {
-                let value = filter.value;
-                const filteredData = countDataByMonthAndYear(FilterData(data, value));
-                const filteredDwellingsData = countDataByMonthAndYear(FilterData(dwellings, value));
+//daftar filter
+const filter = document.getElementById('filter');
+const boroughDropdown = document.getElementById('borough-dropdown');
 
-                chartSaleAll.data.labels = Object.keys(filteredData); // Perbarui labels
-                chartSaleAll.data.datasets[0].data = Object.values(filteredData); // Perbarui data
-                chartSaleAll.update(); // Perbarui chart
+//visualisasi awal dashboard
+let dwellings = FilterData(data, 'BUILDINGCLASSCATEGORY', 'DWELLINGS');
+let chartSaleAll = CreateChart('line', 'All NYC data property sale', SaleChart, countDataByMonthAndYear(data));
+let chartSaleDwellings = CreateChart('line', 'Dwellings Sales', dwellingsChart, countDataByMonthAndYear(dwellings));
+displayTotalRevenue(dwellings);
+displayTotalTransaction(dwellings);
+let ChartBorougharea = CreateChart('bar', 'Penjualan Dwellings per Borough', BoroughChart, countSalesByBorough(dwellings))
+let ChartClass = CreateChart('bar', 'Dwelling Class Categori', classChart, calculateRevenueByBuildingClass(dwellings))
 
-                chartSaleDwellings.data.labels = Object.keys(filteredDwellingsData); // Perbarui labels
-                chartSaleDwellings.data.datasets[0].data = Object.values(filteredDwellingsData); // Perbarui data
-                chartSaleDwellings.update(); // Perbarui chart
-            });
-            // Panggil fungsi untuk membuat chart setelah data diterima
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            loadingOverlay.style.display = 'none';
-        });
+
+filter.addEventListener('change', () => {
+    const value = filter.value;
+    const filteredData = countDataByMonthAndYear(FilterData(data, 'SALEDATE', value));
+    const filteredDwellingsData = countDataByMonthAndYear(FilterData(dwellings, 'SALEDATE', value));
+    console.log(filteredData)
+    updateChartData(chartSaleAll, filteredData);
+    updateChartData(chartSaleDwellings, filteredDwellingsData);
 });
-// Fungsi untuk membuat line chart
-function LineChart(ChartName, ChartID, AllData) {
 
-    const labels = Object.keys(AllData); // Ambil kunci dari objek AllData sebagai label
-    const dataValues = Object.values(AllData); // Ambil nilai dari objek AllData sebagai data
-    let ChartLine = new Chart(ChartID, {
-        type: 'line',
+boroughDropdown.addEventListener('change', () => {
+    const selectedBorough = boroughDropdown.value;
+    let filterData = dwellings;
+
+    if (selectedBorough !== "ALL BOROUGH") {
+        filterData = data.filter(item => item.BOROUGH == selectedBorough);
+    }
+    console.log(filterData)
+    displayTotalRevenue(filterData);
+    displayTotalTransaction(filterData);
+});
+
+
+function updateChartData(chart, newData) {
+    chart.data.labels = Object.keys(newData);
+    chart.data.datasets[0].data = Object.values(newData);
+    chart.update();
+}
+
+function CreateChart(type, ChartName, ChartID, AllData) {
+    const labels = Object.keys(AllData);
+    const dataValues = Object.values(AllData);
+    const createdchart = new Chart(ChartID, {
+        type: type,
         data: {
             labels: labels,
             datasets: [
                 {
                     label: ChartName,
                     data: dataValues,
-                    fill: false,
+                    backgroundColor: '#ffdf3e64',
                     borderColor: '#FFDE3E',
                 }
             ]
         }
     });
-    return ChartLine;
+    return createdchart;
 }
-// Fungsi membuat nama bulan
+
+function countDataByMonthAndYear(data) {
+    return data.reduce((counts, item) => {
+        if (item.SALEDATE) {
+            const [year, month] = item.SALEDATE.split('-');
+            const key = `${getMonthName(parseInt(month))} ${year}`;
+            counts[key] = (counts[key] || 0) + 1;
+        } else {
+            console.warn('Invalid SALE_DATE format:', item.SALEDATE);
+        }
+        return counts;
+    }, {});
+}
+
 function getMonthName(monthNumber) {
     const months = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
-    return months[monthNumber - 1]; // Bulan dimulai dari indeks 0
+    return months[monthNumber - 1] || '';
 }
 
-// Fungsi untuk menghitung jumlah data dengan bulan dan tahun yang sama
-function countDataByMonthAndYear(data) {
-    const countsale = {};
+function FilterData(data, column, value) {
+    return data.filter(dataset => dataset[column].includes(value));
+}
+
+
+function displayTotalRevenue(data) {
+    let totalRevenue = 0;
     data.forEach(item => {
-        if (item.SALEDATE) {
-            const saleDate = item.SALEDATE.split(' ')[0]; // Ambil bagian tanggal saja (dd/mm/yyyy)
-            const [year, month, day] = saleDate.split('-'); // Pisahkan hari, bulan, dan tahun
-            const monthName = getMonthName(parseInt(month)); // Dapatkan nama bulan dari angka bulan
-            const key = `${monthName} ${year}`; // Gabungkan bulan dan tahun sebagai kunci
-            countsale[key] = (countsale[key] || 0) + 1; // Tambahkan jumlah data dengan kunci yang sama
-        } else {
-            console.warn('Invalid SALE_DATE format:', item.SALEDATE);
+        const salePrice = parseFloat(item.SALEPRICE);
+        if (!isNaN(salePrice)) {
+            totalRevenue += salePrice;
+        }
+    });
+    document.getElementById('total-revenue').textContent = '$' + formatNumber(totalRevenue);
+}
+
+
+
+function displayTotalTransaction(data) {
+    let count = 0;
+    data.forEach(item => {
+        const salePrice = parseFloat(item.SALEPRICE);
+        if (!isNaN(salePrice)) {
+            count++;
         }
     });
 
-    // Ubah objek countsale menjadi array untuk diurutkan
-    const sortedCountSale = Object.entries(countsale).sort((a, b) => {
-        const [monthA, yearA] = a[0].split(' ');
-        const [monthB, yearB] = b[0].split(' ');
-        const dateA = new Date(`${monthA} 1, ${yearA}`);
-        const dateB = new Date(`${monthB} 1, ${yearB}`);
-        return dateA - dateB;
-    });
-
-    // Ubah array kembali menjadi objek yang diurutkan
-    const orderedCountSale = {};
-    sortedCountSale.forEach(([key, value]) => {
-        orderedCountSale[key] = value;
-    });
-    return orderedCountSale;
+    document.getElementById('total-transaction').textContent = formatNumber(count);;
 }
 
-
-function DwellingsData(data) {
-    const result = data.filter(dataset => dataset.BUILDINGCLASSCATEGORY.includes("DWELLINGS"));
-    return result;
+function countSalesByBorough(data) {
+    const countsale = {};
+    data.forEach(item => {
+        const borough = item.BOROUGH;
+        if (borough) {
+            countsale[borough] = (countsale[borough] || 0) + 1;
+        }
+    });
+    return countsale;
 }
-function FilterData(data, value) {
-    const result = data.filter(dataset => dataset.SALEDATE.includes(value));
-    return result;
+function calculateRevenueByBuildingClass(data) {
+    const revenueByBuildingClass = {};
+    data.forEach(item => {
+        const buildingClass = item['BUILDINGCLASSCATEGORY'];
+        const salePrice = item['SALEPRICE'];
+        if (buildingClass && !isNaN(salePrice)) {
+            revenueByBuildingClass[buildingClass] = (revenueByBuildingClass[buildingClass] || 0) + salePrice;
+        }
+        formatNumber(salePrice)
+    });
+    return revenueByBuildingClass;
+}
+function formatNumber(num) {
+    if (num >= 1000 && num < 1000000) {
+        return (num / 1000).toFixed(1) + 'k'; // mengubah 1000 - 999999 menjadi 1k - 999k
+    } else if (num >= 1000000 && num < 1000000000) {
+        return (num / 1000000).toFixed(1) + 'M'; // mengubah 1000000 - 999999999 menjadi 1M - 999M
+    } else if (num >= 1000000000) {
+        return (num / 1000000000).toFixed(1) + 'B'; // mengubah 1000000000 dan seterusnya menjadi 1B dan seterusnya
+    } else {
+        return num.toString(); // mengubah angka di bawah 1000 menjadi string biasa
+    }
 }

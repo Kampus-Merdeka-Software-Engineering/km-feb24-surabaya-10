@@ -198,6 +198,7 @@ footer {
     width: 5vw;
     height: 5vw;
     animation: spin 1s linear infinite;
+    background-color: #ffdf3e64;
     /* Animasi putaran loading */
 }
 
