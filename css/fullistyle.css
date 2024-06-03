@@ -440,9 +440,7 @@ table.dataTable {
 
 .popup-content img {
     width: 10vw;
-    /* Lebar 10% dari viewport */
-    height: 20vh;
-    /* Tinggi 20% dari viewport */
+    height: 10vw;
     border-radius: 50%;
     margin-bottom: 10px;
     /* Margin bawah 10px */
