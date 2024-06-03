@@ -1,4 +1,9 @@
 import data from '../assets/data/nyc.json' with {type: 'json'}; // Sesuaikan dengan path yang benar
+if (!data) {
+    loadingOverlay.style.display = 'flex'; // Tampilkan overlay
+} else {
+    loadingOverlay.style.display = 'none';
+}
 //daftar canvas
 const SaleChart = document.getElementById("sale").getContext("2d");
 const dwellingsChart = document.getElementById("dwellingsSale").getContext("2d");
@@ -63,6 +68,21 @@ function CreateChart(type, ChartName, ChartID, AllData) {
                     borderColor: '#FFDE3E',
                 }
             ]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        // This more specific font property overrides the global property
+                        font: {
+                            size: 20,
+                            weight: 'bold'
+
+                        },
+
+                    }
+                }
+            }
         }
     });
     return createdchart;
@@ -152,3 +172,26 @@ function formatNumber(num) {
         return num.toString(); // mengubah angka di bawah 1000 menjadi string biasa
     }
 }
+
+///// DATA TABLE
+$(document).ready(function () {
+    let i = 0;
+    $('#dataTable').DataTable({
+        data: dwellings,
+        columns: [
+            { data: 'BOROUGH' },
+            { data: 'NEIGHBORHOOD' },
+            { data: 'BUILDINGCLASSCATEGORY' },
+            { data: 'BLOCK' },
+            { data: 'ADDRESS' },
+            { data: 'RESIDENTIALUNITS' },
+            { data: 'COMMERCIALUNITS' },
+            { data: 'TOTALUNITS' },
+            { data: 'LANDSQUAREFEET' },
+            { data: 'GROSSSQUAREFEET' },
+            { data: 'YEARBUILT' },
+            { data: 'SALEPRICE' },
+            { data: 'SALEDATE' },
+        ]
+    });
+});

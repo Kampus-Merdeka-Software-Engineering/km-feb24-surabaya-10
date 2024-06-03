@@ -1,0 +1,480 @@
+:root {
+    --primary: #FFDE3E;
+    --secondary: #1C2833;
+    --bg-primary: #1c28337b;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    width: 100vw;
+    height: 100vh;
+    color: var(--secondary);
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+}
+
+nav {
+    display: flex;
+    height: 42px;
+    align-items: center;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+#logo {
+    width: 42px;
+    margin: 0 10px 0 20px;
+}
+
+#description {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 18px;
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+#description h6 {
+    margin: 0 20px 0 20px;
+}
+
+main {
+    padding-top: 60px;
+    display: flex;
+    height: calc(100vh - 60px);
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar {
+    margin: 0;
+    padding: 0;
+    width: 110px;
+    background-color: white;
+    position: fixed;
+    height: 100%;
+    border-right: 3px solid #1C2833;
+}
+
+#sidebar a {
+    margin-top: 5px;
+    display: block;
+    color: black;
+    text-decoration: none;
+}
+
+#sidebar h5 {
+    padding: 10px;
+    margin: 0;
+}
+
+#sidebar a.active {
+    border-radius: 50px 0 0 50px;
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+#sidebar a:hover:not(.active) {
+    border-radius: 50px 0 0 50px;
+    background-color: var(--primary);
+    color: var(--secondary);
+}
+
+
+#contents {
+    width: calc(100vw - 110px);
+    margin-left: 110px;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    align-content: space-between;
+    background-color: white;
+    overflow: hidden;
+}
+
+.tabcontent {
+    overflow-y: auto;
+    overflow-x: auto;
+    padding: 10px;
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: var(--secondary);
+    color: lightcyan;
+}
+
+/* Style untuk scroll bar vertikal */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+    min-height: 10px;
+    width: 10px;
+    border: 1px solid var(--secondary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+::-webkit-scrollbar-corner {
+    background-color: #f1f1f1;
+    border-radius: 0 0 10px 0;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Style untuk overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--primary);
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Style untuk animasi loading */
+.loader {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 8px solid var(--primary);
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+#contents {
+    overflow: auto;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: 49% 49%;
+    grid-gap: 1%;
+    overflow: hidden;
+    padding: 5px;
+    justify-content: center;
+
+}
+
+.filter select {
+    width: auto;
+    /* Ubah lebar select */
+    margin-left: 20px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.section {
+    margin: 5px;
+    padding: 5px;
+    border: 0, 5px solid #7f8994;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    justify-content: space-between
+}
+
+.section__title {
+    font-weight: bold;
+}
+
+.section canvas {
+    margin-bottom: 40px;
+}
+
+.section__total-revenue,
+.section__total-transaction {
+    font-size: 2em;
+    color: #dbcb42;
+    box-sizing: content-box;
+}
+
+.dropdown {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-color: transparent;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.section__chart {
+    width: 100%;
+    max-width: 50vw;
+    /* 50% of the viewport width */
+
+
+    @media (min-width: 768px) {
+
+        .charts-container,
+        .stats-container {
+            flex-direction: row;
+        }
+
+        .section__chart,
+        .section {
+            flex: 1 1 calc(45vw - 20px);
+            /* 45% of the viewport width minus 20px for gap */
+        }
+    }
+
+    /* Menggunakan vw dan vh untuk ukuran kotak */
+    .stats-container .section {
+        width: calc(45vw - 20px);
+        height: 20vh;
+        /* 20% of the viewport height */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+table.dataTable {
+    font-size: 9.5px;
+    /* Sesuaikan ukuran font yang Anda inginkan */
+}
+
+/* Style untuk tampilan mobile */
+@media (max-width: 768px) {
+    #sidebar {
+        width: 100%;
+        height: 40px;
+        position: fixed;
+        background-color: #f1f1f1;
+    }
+
+    #sidebar a.active {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #sidebar a {
+        margin-top: 0;
+        margin-right: 5px;
+        float: left;
+        padding: 0;
+    }
+
+    #sidebar a:hover:not(.active) {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #contents {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 40px;
+    }
+
+
+    .loader {
+        width: 60px;
+        height: 60px;
+    }
+
+}
+
+.mentor-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 60vw;
+    margin: 0 auto;
+}
+
+.mentor {
+    text-align: center;
+}
+
+.mentor h5 {
+    margin-bottom: 10px;
+}
+
+.mentor-profile {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    flex: 1;
+    flex-direction: column;
+}
+
+.mentor-profile img {
+    width: 7vw;
+    height: 7vw;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.mentor-profile h5 {
+    margin: 0;
+}
+
+.team-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.team-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 5px;
+    justify-content: center;
+}
+
+.team-member {
+    text-align: center;
+    width: 20%;
+    margin-left: 20px;
+}
+
+.team-member img {
+    width: 7vw;
+    height: 7vw;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    /* Menyembunyikan popup secara default */
+    position: fixed;
+    /* Posisi tetap di layar */
+    top: 50%;
+    /* Jarak atas 50% dari layar */
+    left: 50%;
+    /* Jarak kiri 50% dari layar */
+    transform: translate(-50%, -50%);
+    /* Menggeser popup ke tengah */
+    width: 25vw;
+    height: 50vh;
+    background-color: #f5f5f5;
+    padding: 20px 20px;
+    /* Padding atas/bawah 20px, kiri/kanan 20px */
+    border-radius: 10px;
+    box-shadow: 1 1 10px rgba(0, 0, 0, 0.2);
+    border: 1.5px solid #110909;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Menjajarkan konten ke tengah secara horizontal */
+    height: 100%;
+    justify-content: center;
+    /* Menjajarkan konten ke tengah secara vertikal */
+}
+
+.popup-content p {
+    text-align: left;
+    /* Teks di dalam elemen rata kiri */
+    margin: 8px 0;
+    width: 100%;
+}
+
+.popup-content img {
+    width: 10vw;
+    /* Lebar 10% dari viewport */
+    height: 20vh;
+    /* Tinggi 20% dari viewport */
+    border-radius: 50%;
+    margin-bottom: 10px;
+    /* Margin bawah 10px */
+}
+
+.close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #ebbb37;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+/* Ensure responsive layout */
+@media screen and (max-width: 768px) {
+    .mentor-container {
+        flex-direction: column;
+        max-width: 100%;
+        gap: 20px;
+    }
+
+    .team-row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .team-member {
+        width: 100%;
+        margin-left: 0;
+    }
+}
