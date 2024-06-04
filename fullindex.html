@@ -19,7 +19,7 @@
     </div>
     <header>
         <nav>
-            <img src="assets/img/Revou_Logo.png" alt="" id="logo">
+            <img src="assets/img/Revou_Logo.png" alt="Revou_Logo" id="logo">
             <h4>
                 SE-Surabaya-Team 10
             </h4>
@@ -72,34 +72,41 @@
 
         <section id="contents">
             <div id="Dashboard" class="tabcontent">
+                <div id="judul">
+                    <h1>Dwellings Sales</h1>
+                </div>
                 <div id="grid-container">
                     <div class="stats-container">
-                        <div class="section">
-                            <h4 class="section__title">Penjualan Properti
-                                <span class="filter">
-                                    <select id="filter-time">
-                                        <option value="">Semua Tahun</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2017">2017</option>
-                                    </select>
-                                </span>
-                            </h4>
-                            <canvas id="sale" width="44.5vw" height="20vh"></canvas>
-                            <canvas id="dwellingsSale" width="44.5vw" height="15vh"></canvas>
+                        <div class="filter">
+                            <h4 class="section__title">Filter</h4>
+                            <!-- filter tahun -->
+                            <select id="filter-tahun">
+                                <option value="">Year</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="stats-container">
-                        <div class="filter section" id="dropdown-section">
-                            <h2 class="section__title">Penjualan Dwellings per wilayah</h2>
+                        <!-- filter borough -->
+                        <div class="filter" id="dropdown-section">
                             <select id="borough-dropdown">
-                                <option value="ALL BOROUGH">semua Borough</option>
+                                <option value="ALL BOROUGH">Borough</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
                             </select>
+                            <div id="note">
+                                <p>note:</p>
+                                <p>1 (Manhattan)</p>
+                                <p>2 (Bronx)</p>
+                                <p>3 (Brooklyn)</p>
+                                <p>4 (Queens)</p>
+                                <p>5 (Staten Island)</p>
+                            </div>
                         </div>
+                    </div>
+                    <div class="stats-container">
                         <div class="stats">
                             <div class="section" id="total-revenue-section">
                                 <h4 class="section__title">Total Revenue: </h4>
@@ -110,15 +117,20 @@
                                 <h1 class="section__total-transaction" id="total-transaction"></h1>
                             </div>
                         </div>
-                        <div class="section" id="sales-by-borough-section">
-                            <h4 class="section__title">Total Penjualan per Borough</h4>
-                            <canvas id="bar-chart-borough" class="section__chart" width="44vw" height="19vh"></canvas>
+                        <div class="section">
+                            <h4 class="section__title">Dwellings sales vs All Property Sales</h4>
+                            <canvas id="sale" width="50vw" height="20vh"></canvas>
                         </div>
                     </div>
-
-                    <div class="section" id="revenue-by-class-category-section">
-                        <h2 class="section__title">Total Revenue per Class Category</h2>
-                        <canvas id="bar-chart-class-category" class="section__chart" width="400" height="200"></canvas>
+                    <div class="stats-container">
+                        <div class="section" id="revenue-by-class-category-section">
+                            <h4 class="section__title">Total Revenue per Class Category</h4>
+                            <canvas id="bar-chart-class-category" class="section__chart" width="50vw" height="25vh"></canvas>
+                        </div>
+                        <div class="section" id="sales-by-borough-section">
+                            <h4 class="section__title">Total Sales per Borough</h4>
+                            <canvas id="bar-chart-borough" class="section__chart" width="50vw" height="25vh"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -183,7 +195,7 @@
                             <h5>Rifki Hamdani</h5>
                         </div>
                         <div class="team-member">
-                            <img src="assets/img/foto.jpg" alt="Naza">
+                            <img src="assets/img/Naza.jpg" alt="Naza">
                             <h5>Roudhotulloh Nazakhan</h5>
                         </div>
                         <div class="team-member">
@@ -271,10 +283,10 @@
                     </div>
                     <div class="popup" id="popup-4">
                         <div class="popup-content">
-                            <img src="assets/img/foto.jpg" alt="Naza">
+                            <img src="assets/img/Naza.jpg" alt="Naza">
                             <h3>Roudhotulloh Nazakhan</h3>
-                            <p>Posisi: Anggota Team</p>
-                            <p>Asal Universitas: Universitas ABC</p>
+                            <p>Teknik informatika'21</p>
+                            <p>Universitas Negeri Malang</p>
                             <span class="close-icon">&times;</span>
                         </div>
                     </div>
@@ -364,6 +376,7 @@
     <script src="js/team.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    
 
     <script type="module" src="js/full.js"></script>
     <script>

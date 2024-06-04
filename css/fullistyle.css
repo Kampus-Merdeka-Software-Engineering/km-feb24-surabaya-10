@@ -194,9 +194,14 @@ footer {
     overflow: auto;
 }
 
+#judul{
+    font-family: sans-serif;
+    text-align: center;
+}
+
 #grid-container {
     display: grid;
-    grid-template-columns: 49% 49%;
+    grid-template-columns: 10% 45% 42%;
     grid-gap: 1%;
     overflow: hidden;
     padding: 5px;
@@ -205,12 +210,20 @@ footer {
 }
 
 .filter select {
-    width: auto;
+    width: 7vw;
     /* Ubah lebar select */
+    font-size: 1vw;
     margin-left: 20px;
     padding: 2px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    text-align: center;
+}
+
+#note{
+    font-family: arial;
+    font-size: 1vw;
+    text-align: left;
 }
 
 .section {
@@ -224,17 +237,24 @@ footer {
 }
 
 .section__title {
+    font-size: 1,6vw;
     font-weight: bold;
+    margin: 2vh;
 }
 
 .section canvas {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
-.section__total-revenue,
+.section__total-revenue{
+    font-size: 2em;
+    color: var(--bg-primary);
+    box-sizing: content-box; 
+}
+
 .section__total-transaction {
     font-size: 2em;
-    color: #dbcb42;
+    color: var(--bg-primary);
     box-sizing: content-box;
 }
 
