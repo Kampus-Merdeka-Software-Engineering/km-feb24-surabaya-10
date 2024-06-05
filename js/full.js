@@ -1,9 +1,12 @@
+//data 
 import data from '../assets/data/nyc.json' with {type: 'json'}; // Sesuaikan dengan path yang benar
 if (!data) {
     loadingOverlay.style.display = 'flex'; // Tampilkan overlay
 } else {
     loadingOverlay.style.display = 'none';
 }
+
+
 // daftar canvas
 const SaleChart = document.getElementById("sale").getContext("2d");
 const BoroughChart = document.getElementById('bar-chart-borough').getContext("2d");
@@ -37,23 +40,22 @@ function updateAllCharts() {
     const filterValue = filterTahun.value;
     const selectedBorough = boroughDropdown.value;
 
-    let filteredData = data;
     let filteredDwellings = dwellings;
-
+    let dataUpdate = data;
     if (filterValue) {
-        filteredData = FilterData(data, 'SALEDATE', filterValue);
+        dataUpdate = FilterData(data, 'SALEDATE', filterValue);
         filteredDwellings = FilterData(dwellings, 'SALEDATE', filterValue);
     }
 
     if (selectedBorough !== "ALL BOROUGH") {
-        filteredData = filteredData.filter(item => item.BOROUGH == selectedBorough);
+        dataUpdate = data.filter(item => item.BOROUGH == selectedBorough);
         filteredDwellings = filteredDwellings.filter(item => item.BOROUGH == selectedBorough);
     }
 
-    console.log(filteredData, filteredDwellings); // Debugging to check filtered data
+    console.log(dataUpdate, filteredDwellings); // Debugging to check filtered data
 
     updateChartData(chartSaleAll, [
-        countDataByMonthAndYear(filteredData),
+        countDataByMonthAndYear(dataUpdate),
         countDataByMonthAndYear(filteredDwellings)
     ]);
 
@@ -245,27 +247,211 @@ function formatNumber(num) {
     }
 }
 
+/////////////////// tabel data
 
-///// DATA TABLE
-$(document).ready(function () {
-    let i = 0;
-    $('#dataTable').DataTable({
-        data: dwellings,
-        columns: [
-            { data: 'BOROUGH' },
-            { data: 'NEIGHBORHOOD' },
-            { data: 'BUILDINGCLASSCATEGORY' },
-            { data: 'BLOCK' },
-            { data: 'ADDRESS' },
-            { data: 'RESIDENTIALUNITS' },
-            { data: 'COMMERCIALUNITS' },
-            { data: 'TOTALUNITS' },
-            { data: 'LANDSQUAREFEET' },
-            { data: 'GROSSSQUAREFEET' },
-            { data: 'YEARBUILT' },
-            { data: 'SALEPRICE' },
-            { data: 'SALEDATE' },
-        ]
+const pageSize = 1000; // Sesuaikan dengan jumlah data per halaman yang diinginkan
+let currentPage = 1;
+let totalPages = Math.ceil(dwellings.length / pageSize);
+
+function displayData(page, dataToDisplay) {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = page * pageSize;
+    const paginatedData = dataToDisplay.slice(startIndex, endIndex);
+
+    const tableBody = document.getElementById('dataBody');
+    tableBody.innerHTML = ''; // Bersihkan isi tabel sebelum menambahkan data baru
+
+    let i = startIndex;
+    paginatedData.forEach(item => {
+        i++;
+        const row = document.createElement('tr');
+        row.innerHTML += `
+            <td>${i}</td>
+            <td>${item['BOROUGH']}</td>
+            <td>${item['NEIGHBORHOOD']}</td>
+            <td>${item['BUILDINGCLASSCATEGORY']}</td>
+            <td>${item['TAXCLASSATPRESENT']}</td>
+            <td>${item['BLOCK']}</td>
+            <td>${item['LOT']}</td>
+            <td>${item['BUILDINGCLASSATPRESENT']}</td>
+            <td>${item['ADDRESS']}</td>
+            <td>${item['ZIPCODE']}</td>
+            <td>${item['RESIDENTIALUNITS']}</td>
+            <td>${item['COMMERCIALUNITS']}</td>
+            <td>${item['TOTALUNITS']}</td>
+            <td>${item['LANDSQUAREFEET']}</td>
+            <td>${item['GROSSSQUAREFEET']}</td>
+            <td>${item['YEARBUILT']}</td>
+            <td>${item['BUILDINGCLASSATTIMEOFSALE']}</td>
+            <td>${item['SALEPRICE']}</td>
+            <td>${item['SALEDATE']}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Perbarui informasi halaman dan jumlah data
+    document.getElementById('pageInfo').textContent = `Page ${currentPage} of ${totalPages}`;
+    document.getElementById('totalDataInfo').textContent = `Total Data: ${dataToDisplay.length}`;
+
+    // Perbarui kondisi tombol
+    document.getElementById('prevPage').disabled = currentPage === 1;
+    document.getElementById('nextPage').disabled = currentPage === totalPages;
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    displayData(currentPage, dwellings);
+
+    document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayData(currentPage, dwellings);
+        }
+    });
+
+    document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayData(currentPage, dwellings);
+        }
+    });
+
+    // Event listener untuk pencarian
+    document.getElementById('search__data').addEventListener('keypress', event => {
+        if (event.key === 'Enter') {
+            const searchTerm = document.getElementById('search__data').value.toLowerCase();
+            const filterBy = document.getElementById('filter__data').value;
+
+            const filteredData = dwellings.filter(item => {
+                const fieldValue = item[filterBy].toString().toLowerCase();
+                return fieldValue.includes(searchTerm);
+            });
+
+            if (filteredData.length === 0) {
+                document.getElementById('noResultsModal').style.display = 'block';
+            } else {
+                currentPage = 1; // Kembalikan ke halaman pertama setelah pencarian
+                totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
+                displayData(currentPage, filteredData); // Tampilkan data hasil pencarian
+            }
+        }
+    });
+
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('noResultsModal').style.display = 'none';
+    });
+
+    document.getElementById('closeButton').addEventListener('click', () => {
+        document.getElementById('noResultsModal').style.display = 'none';
+    });
+
+    window.addEventListener('click', event => {
+        if (event.target === document.getElementById('noResultsModal')) {
+            document.getElementById('noResultsModal').style.display = 'none';
+        }
+    });
+
+    // Event listener untuk perubahan pada filter atau urutan pengurutan
+    document.getElementById('filter__data').addEventListener('change', updateDisplayedData);
+    document.getElementById('sortOrder').addEventListener('change', updateDisplayedData);
+
+});
+
+
+// Fungsi untuk mengurutkan data berdasarkan filter yang dipilih dan urutan pengurutan
+function updateDisplayedData() {
+    document.getElementById('search__data').value = '';
+    const filterBy = document.getElementById('filter__data').value;
+    const sortOrder = document.getElementById('sortOrder').value;
+    console.log(filterBy, sortData)
+    // Mengurutkan data hasil pencarian berdasarkan filter yang dipilih dan urutan pengurutan
+    const sortedData = sortData(dwellings, filterBy, sortOrder);
+
+    currentPage = 1; // Kembalikan ke halaman pertama setelah pengurutan atau perubahan filter
+    totalPages = Math.ceil(sortedData.length / pageSize); // Perbarui jumlah halaman
+    displayData(currentPage, sortedData); // Tampilkan data hasil pengurutan
+}
+
+// Fungsi untuk mengurutkan data berdasarkan filter yang dipilih dan urutan pengurutan
+function sortData(dataToSort, filterBy, sortOrder) {
+    return dataToSort.sort((a, b) => {
+        const valueA = a[filterBy];
+        const valueB = b[filterBy];
+
+        if (sortOrder === 'asc') {
+            return valueA > valueB ? 1 : -1;
+        } else {
+            return valueA < valueB ? 1 : -1;
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+// Variabel global untuk menyimpan pop-up yang saat ini terbuka
+let openPopup = null;
+
+// Mendapatkan semua elemen mentor dan anggota tim
+const mentors = document.querySelectorAll('.mentor');
+const teamMembers = document.querySelectorAll('.team-member');
+
+// Menambahkan event listener ke setiap elemen mentor
+mentors.forEach((mentor, index) => {
+    mentor.addEventListener('click', () => {
+        // Tutup pop-up yang saat ini terbuka (jika ada)
+        if (openPopup) {
+            openPopup.style.display = 'none';
+        }
+
+        // Mendapatkan elemen popup yang sesuai
+        const popupId = `mentorPopup-${index + 1}`;
+        const popup = document.getElementById(popupId);
+        // Menampilkan pop-up
+        popup.style.display = 'block';
+
+        // Menyimpan pop-up yang saat ini terbuka
+        openPopup = popup;
+    });
+});
+
+// Menambahkan event listener ke setiap elemen anggota tim
+teamMembers.forEach((teamMember, index) => {
+    teamMember.addEventListener('click', () => {
+        // Tutup pop-up yang saat ini terbuka (jika ada)
+        if (openPopup) {
+            openPopup.style.display = 'none';
+        }
+
+        // Mendapatkan elemen popup yang sesuai
+        const popupId = `popup-${index + 1}`;
+        const popup = document.getElementById(popupId);
+        // Menampilkan pop-up
+        popup.style.display = 'block';
+
+        // Menyimpan pop-up yang saat ini terbuka
+        openPopup = popup;
+    });
+});
+
+// Menambahkan event listener ke ikon tutup di setiap pop-up
+document.querySelectorAll('.close-icon').forEach((closeIcon) => {
+    closeIcon.addEventListener('click', () => {
+        // Mendapatkan elemen pop-up induk
+        const popup = closeIcon.parentNode.parentNode;
+        // Menyembunyikan pop-up
+        popup.style.display = 'none';
+
+        // Reset variabel global
+        openPopup = null;
     });
 });
 
