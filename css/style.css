@@ -27,8 +27,12 @@ nav {
     color: var(--primary);
 }
 
+nav h4{
+    font-size: 1.8vw;
+}
+
 #logo {
-    width: 42px;
+    width: 3vw;
     margin: 0 10px 0 20px;
 }
 
@@ -37,12 +41,13 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100vw;
-    height: 18px;
+    height: 3vh;
     background-color: var(--primary);
     color: var(--secondary);
 }
 
 #description h6 {
+    font-size: 1vw;
     margin: 0 20px 0 20px;
 }
 
@@ -65,7 +70,7 @@ ul {
 #sidebar {
     margin: 0;
     padding: 0;
-    width: 110px;
+    width: 9vw;
     background-color: white;
     position: fixed;
     height: 100%;
@@ -73,14 +78,15 @@ ul {
 }
 
 #sidebar a {
-    margin-top: 5px;
+    margin-top: 1vw;
     display: block;
     color: black;
     text-decoration: none;
 }
 
 #sidebar h5 {
-    padding: 10px;
+    padding: 1vw;
+    font-size: 1vw;
     margin: 0;
 }
 
@@ -98,8 +104,8 @@ ul {
 
 
 #contents {
-    width: calc(100vw - 110px);
-    margin-left: 110px;
+    width: calc(100vw - 9vw);
+    margin-left: 9vw;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -111,16 +117,21 @@ ul {
 .tabcontent {
     overflow-y: auto;
     overflow-x: auto;
-    padding: 10px;
+    padding: 1vw;
     width: 100%;
 }
 
 footer {
     width: 100%;
-    padding: 20px;
+    height: 9vh;
+    padding: 1px;
     text-align: center;
     background-color: var(--secondary);
     color: lightcyan;
+}
+
+footer h5{
+    font-size: 1vw;
 }
 
 /* Style untuk scroll bar vertikal */
@@ -196,6 +207,7 @@ footer {
 
 #judul {
     font-family: sans-serif;
+    font-size: 1.6vw;
     text-align: center;
 }
 
@@ -524,6 +536,13 @@ tbody tr:nth-child(even) {
     }
 }
 
+
+
+.profile{
+    display: grid;
+row-gap: 7vh;
+}
+
 .mentor-container {
     display: flex;
     justify-content: center;
@@ -536,8 +555,14 @@ tbody tr:nth-child(even) {
     text-align: center;
 }
 
+.mentors h2{
+    font-size: 2vw;
+    text-align: center;
+}
+
 .mentor h5 {
-    margin-bottom: 10px;
+    margin-bottom: 1vh;
+    font-size: 1.1vw;
 }
 
 .mentor-profile {
@@ -571,16 +596,24 @@ tbody tr:nth-child(even) {
 
 .team-row {
     display: flex;
-    justify-content: space-around;
-    gap: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 5vh;
     justify-content: center;
+}
+
+.team h2{
+    font-size: 2vw;
+    text-align: center;
 }
 
 .team-member {
     text-align: center;
     width: 20%;
-    margin-left: 20px;
+    margin-left: 2vw;
+}
+
+.team-member h5{
+    margin-bottom: 1vh;
+    font-size: 1.1vw;
 }
 
 .team-member img {
