@@ -68,7 +68,7 @@ body {
 .keterangan {
     width: 40vw;
     z-index: 10;
-    position: relative; 
+    position: relative;
 }
 
 .keterangan h1 {
@@ -77,15 +77,16 @@ body {
     position: relative;
     color: solid black;
     text-shadow: 1px 1px 0 #aaa,
-                 2px 2px 0 #777777,
-                 3px 3px 0 #454444,
-                 4px 4px 0 #aaa,
-                 5px 5px 0 #bdbdbd,
-                 6px 6px 0 #b9b9b9,
-                 7px 7px 0 #ffffff,
-                 8px 8px 0 #ffffff,
-                 9px 9px 0 #ffffff,
-                 10px 10px 0 #ffffff; /* Menambahkan beberapa bayangan untuk efek 3D */
+        2px 2px 0 #777777,
+        3px 3px 0 #454444,
+        4px 4px 0 #aaa,
+        5px 5px 0 #bdbdbd,
+        6px 6px 0 #b9b9b9,
+        7px 7px 0 #ffffff,
+        8px 8px 0 #ffffff,
+        9px 9px 0 #ffffff,
+        10px 10px 0 #ffffff;
+    /* Menambahkan beberapa bayangan untuk efek 3D */
 }
 
 .keterangan h3 {
@@ -141,32 +142,39 @@ p {
         right: 0;
         left: 0;
     }
-/* Media query untuk mengubah background image pada orientasi potret */
+
+    /* Media query untuk mengubah background image pada orientasi potret */
     .background img {
         content: url('../assets/img/potrait.png');
     }
+
     .background img {
         margin-top: 50%;
         width: 100vw;
         height: auto;
     }
+
     .keterangan {
         width: 100vw;
         text-align: center;
     }
+
     .keterangan h1 {
         font-size: 4vw;
         margin-top: 10vh;
     }
+
     .keterangan h3 {
         font-size: 2vw;
         text-align: left;
     }
+
     p {
         width: 50vw;
         margin-left: 25%;
         font-size: 2vw;
     }
+
     #enterButton {
         width: 15vw;
         height: 3vh;
@@ -195,12 +203,8 @@ nav {
     color: var(--primary);
 }
 
-nav h4 {
-    font-size: 1.6vw;
-}
-
 #logo {
-    width: 3vw;
+    width: 30px;
     margin: 0 10px 0 20px;
 }
 
@@ -215,7 +219,6 @@ nav h4 {
 }
 
 #description h6 {
-    font-size: 1vw;
     margin: 0 20px 0 20px;
 }
 
@@ -378,7 +381,7 @@ footer h5 {
 
 #judul {
     font-family: sans-serif;
-    font-size: 1.6vw;
+    font-size: 20px;
     text-align: center;
     margin-bottom: 8vh;
 }
@@ -509,6 +512,7 @@ footer h5 {
 
 .filter__data label {
     font-weight: bold;
+    font-size: 1vw;
 }
 
 .filter__data input[type="text"] {
@@ -519,10 +523,12 @@ footer h5 {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 5px;
+    float: right;
 }
 
 .filter__data select {
-    max-width: 20vh;
+    width: 50%;
+    float: right;
     /* Ubah lebar select */
     font-size: 1vw;
     padding: 3px;
@@ -664,55 +670,7 @@ tbody tr:nth-child(even) {
 }
 
 
-/* Style untuk tampilan mobile */
-@media (max-width: 768px) {
-    #sidebar {
-        width: 100%;
-        height: 40px;
-        position: fixed;
-        background-color: #f1f1f1;
-    }
 
-    #sidebar a.active {
-        border-radius: 0 0 5px 5px;
-    }
-
-    #sidebar a {
-        margin-top: 0;
-        margin-right: 5px;
-        float: left;
-        padding: 0;
-    }
-
-    #sidebar a:hover:not(.active) {
-        border-radius: 0 0 5px 5px;
-    }
-
-    #contents {
-        width: 100%;
-        margin-left: 0;
-        margin-top: 40px;
-    }
-
-    .loader {
-        width: 60px;
-        height: 60px;
-    }
-
-    .section__title {
-        font-size: 18px;
-    }
-
-    #grid-container {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    #filter__dashboard {
-        display: flex;
-        flex-direction: row;
-    }
-}
 
 
 /*Gaya untuk halaman team*/
@@ -877,5 +835,83 @@ tbody tr:nth-child(even) {
     .team-member {
         width: 100%;
         margin-left: 0;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: 26px;
+        position: fixed;
+        margin: 0;
+        background-color: #f1f1f1;
+    }
+
+    #sidebar a.active {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #sidebar a {
+        margin-top: 0;
+        margin-right: 5px;
+        float: left;
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    #sidebar a h5 {
+        font-size: 10px;
+    }
+
+    #sidebar a:hover:not(.active) {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #contents {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 25px;
+    }
+
+    .loader {
+        width: 60px;
+        height: 60px;
+    }
+
+    .section__title {
+        font-size: 18px;
+    }
+
+    #grid-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #filter__dashboard {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .filter__data {
+        width: 26vw;
+    }
+
+    .filter__data select {
+        width: 50%;
+        margin-left: 10px;
+    }
+
+    .popup {
+        right: 25vw;
+        width: 50vw;
+    }
+
+    .popup-content img {
+        width: 200px;
+        height: 200px;
+        border: 5px solid var(--primary);
+    }
+
+    .popup-content {
+        width: 50vw;
+        height: 50%;
     }
 }
