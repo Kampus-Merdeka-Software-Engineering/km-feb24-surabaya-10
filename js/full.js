@@ -1,11 +1,45 @@
-//data 
+////LANDING PAGE
+document.addEventListener('DOMContentLoaded', function () {
+    const landingPage = document.getElementById('landingPage');
+    const header = document.getElementById('header');
+    const main = document.getElementById('main');
+    const footer = document.getElementById('footer');
+    const enterButton = document.getElementById('enterButton');
+
+    enterButton.addEventListener('click', function () {
+        // Tampilkan overlay loading
+        loadingOverlay.style.display = 'flex';
+
+        setTimeout(function() {
+            // Sembunyikan overlay loading
+            loadingOverlay.style.display = 'none';
+
+            // Tampilkan konten utama
+            landingPage.style.display = 'none';
+            header.style.display = 'block';
+            main.style.display = 'block';
+
+
+
+            // Aktifkan konten pertama (contents)
+            document.getElementById('contents').classList.add('active');
+
+            // Klik tab default
+            document.getElementById("defaultOpen").click();
+        }, 500); // Simulasi loading selama 2 detik
+    });
+});
+
+
+
+////DASHBOARD
+//mengambil data 
 import data from '../assets/data/nyc.json' with {type: 'json'}; // Sesuaikan dengan path yang benar
 if (!data) {
     loadingOverlay.style.display = 'flex'; // Tampilkan overlay
 } else {
     loadingOverlay.style.display = 'none';
 }
-
 
 // daftar canvas
 const SaleChart = document.getElementById("sale").getContext("2d");
@@ -247,9 +281,13 @@ function formatNumber(num) {
     }
 }
 
-/////////////////// tabel data
 
-const pageSize = 1000; // Sesuaikan dengan jumlah data per halaman yang diinginkan
+
+
+
+/////////////////// TABEL DATA
+
+const pageSize = 100; // Sesuaikan dengan jumlah data per halaman yang diinginkan
 let currentPage = 1;
 let totalPages = Math.ceil(dwellings.length / pageSize);
 

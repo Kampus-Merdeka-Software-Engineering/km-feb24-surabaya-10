@@ -12,5 +12,19 @@ function openCity(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 
-// Get the element with id="defaultOpen" and click on it
+// Klik tab default setelah loading selesai
 document.getElementById("defaultOpen").click();
+
+//fungsi untuk kembali ke halaman landing page
+function exitToLandingPage() {
+    const landingPage = document.getElementById('landingPage');
+    const header = document.getElementById('header');
+    const main = document.getElementById('main');
+    const footer = document.getElementById('footer');
+
+    // Tampilkan halaman landing dan sembunyikan konten utama
+    landingPage.style.display = 'block';
+    header.style.display = 'none';
+    main.style.display = 'none';
+
+}

@@ -10,17 +10,37 @@
 </head>
 
 <body>
-    <!-- Overlay untuk animasi loading -->
-    <div class="overlay" id="loadingOverlay">
-        <div class="loader"></div>
-        <!-- Animasi loading -->
-        <p>Memuat Data...</p>
+    <div id="landingPage" class="landing-page">
+        <div class="keterangan">
+            <section class="logos">
+                <img src="assets/img/Revou_Logo.png" alt="RevoU" width="50vh" class="logo">
+                <img src="assets/img/kampus merdeka.png" alt="Kampus Merdeka" width="50vh" class="logo">
+            </section>
+            <h3>Team 10 Section Surabaya</h3>
+            <h1>Welcome to Our Capstone Project</h1>
+            <p>Our project is based on the results of analysis a dataset of property sales in New York City in the
+                period September 2016-August 2017.
+                We focus on analyzing property sales in the Dwellings Class Category.
+            </p>
+            <button id="enterButton">Click &#9654;</button> <!-- &#9654; adalah kode Unicode untuk tanda panah kanan -->
+        </div>
+        <div class="background">
+            <img src="assets/img/background.png" alt="Team Logo">
+        </div>
     </div>
-    <header>
+
+
+    <header id="header" style="display: none;">
+        <!-- Overlay untuk animasi loading -->
+        <div class="overlay" id="loadingOverlay">
+            <div class="loader"></div>
+            <!-- Animasi loading -->
+            <p>Memuat Data...</p>
+        </div>
         <nav>
             <img src="assets/img/Revou_Logo.png" alt="Revou_Logo" id="logo">
             <h4>
-                SE-Surabaya-Team 10
+                SE-Team 10 Surabaya
             </h4>
         </nav>
         <div id="description">
@@ -28,7 +48,7 @@
             <h6>Data From Kaggle</h6>
         </div>
     </header>
-    <main>
+    <main id="main" style="display: none;">
         <section id="sidebar">
             <ul>
                 <li><a class="tablinks" onclick="openCity(event, 'Dashboard')" id="defaultOpen">
@@ -66,6 +86,17 @@
                         </h5>
                     </a>
                 </li>
+                <li><a class="tablinks" onclick="exitToLandingPage()">
+                        <h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                                class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M13.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V12a.5.5 0 0 1 1 0v2h10V2h-10v2a.5.5 0 0 1-1 0V2.5a.5.5 0 0 1 .5-.5h11zm-4.646 7.646a.5.5 0 0 1 0-.707L11.293 7H1.5a.5.5 0 0 1 0-1h9.793L8.854 4.854a.5.5 0 1 1 .707-.707l3 3a.5.5 0 0 1 0 .707l-3 3a.5.5 0 0 1-.707 0z" />
+                            </svg>
+                            Exit
+                        </h5>
+                    </a>
+                </li>
             </ul>
         </section>
 
@@ -76,7 +107,6 @@
                 </div>
                 <div id="grid-container">
                     <div class="stats-container" id="filter__dashboard">
-
                         <h4 class="section__title">Filter</h4>
                         <!-- filter tahun -->
                         <select id="filter-tahun">
@@ -86,7 +116,6 @@
                         </select>
 
                         <!-- filter borough -->
-
                         <select id="borough-dropdown">
                             <option value="ALL BOROUGH">Borough</option>
                             <option value="1">1 (Manhattan)</option>
@@ -100,17 +129,19 @@
                     <div class="stats-container">
                         <div class="stats">
                             <div class="section" id="total-revenue-section">
+                                <img src="assets/img/revenue.webp" alt="Revenue" id="logo">
                                 <h4 class="section__title">Total Revenue: </h4>
                                 <h1 class="section__total-revenue" id="total-revenue"></h1>
                             </div>
                             <div class="section" id="total-transaction-section">
+                                <img src="assets/img/transaction.png" alt="Transaction" id="logo">
                                 <h4 class="section__title">Total Transaction:</h4>
                                 <h1 class="section__total-transaction" id="total-transaction"></h1>
                             </div>
                         </div>
                         <div class="section">
                             <h4 class="section__title">Dwellings sales vs All Property Sales</h4>
-                            <canvas id="sale" width="50vw" height="40vh"></canvas>
+                            <canvas id="sale" width="50vw" height="36vh"></canvas>
                         </div>
                     </div>
                     <div class="stats-container">
@@ -213,207 +244,207 @@
 
             <div id="Team" class="tabcontent">
                 <div class="profile">
-                <section class="mentors">
-                    <h2>Our Mentors</h2>
-                    <div class="mentor-container">
-                        <div class="mentor">
-                            <div class="mentor-profile">
-                                <img src="assets/img/foto.jpg" alt="Mentor Image">
-                                <h5>Kak Hendra </h5>
+                    <section class="mentors">
+                        <h2>Our Mentors</h2>
+                        <div class="mentor-container">
+                            <div class="mentor">
+                                <div class="mentor-profile">
+                                    <img src="assets/img/Revou_Logo.png" alt="Mentor Image">
+                                    <h5>Kak Hendra </h5>
+                                </div>
+                            </div>
+                            <div class="mentor">
+                                <div class="mentor-profile">
+                                    <img src="assets/img/Revou_Logo.png" alt="Mentor Image">
+                                    <h5>Kak Nandi</h5>
+                                </div>
                             </div>
                         </div>
-                        <div class="mentor">
-                            <div class="mentor-profile">
-                                <img src="assets/img/foto.jpg" alt="Mentor Image">
-                                <h5>Kak Nandi</h5>
+                    </section>
+                    <!-- Untuk data team-->
+                    <section class="team">
+                        <h2>Our Team Members</h2>
+                        <div class="team-row">
+                            <div class="team-member">
+                                <img src="assets/img/IAN.png" alt="Ian">
+                                <h5> Ian Syadewa </h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Miil.jpg" alt="Miil">
+                                <h5> Miil Saputri </h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/RIFKI.jpg" alt="Rifki">
+                                <h5>Rifki Hamdani</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Naza.jpg" alt="Naza">
+                                <h5>Roudhotulloh Nazakhan</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/zaidan.jpg" alt="Zaidan">
+                                <h5>Zaidan Adli Wibawa</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Anni.jpg" alt="Anni">
+                                <h5>Anni Kholilah</h5>
                             </div>
                         </div>
-                    </div>
-                </section>
-                <!-- Untuk data team-->
-                <section class="team">
-                    <h2>Our Team Members</h2>
-                    <div class="team-row">
-                        <div class="team-member">
-                            <img src="assets/img/IAN.png" alt="Ian">
-                            <h5> Ian Syadewa </h5>
+                        <div class="team-row">
+                            <div class="team-member">
+                                <img src="assets/img/EZRA A Y.jpg" alt="Ezra">
+                                <h5>Ezra Anang Yudhistira</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Hana.jpg" alt="Hana">
+                                <h5>Siti Rohanah</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Iren Y.JPG" alt="Iren">
+                                <h5> Iren Yolanda Sitompul</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Alawiyah.jpg" alt="Ala">
+                                <h5>Imaroh Alawiyah</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Nurani Gita Safitri.jpg" alt="Gita">
+                                <h5>Nurani Gita Safitri</h5>
+                            </div>
+                            <div class="team-member">
+                                <img src="assets/img/Karan.jpg" alt="Karan">
+                                <h5>Karan Bagas Adrian</h5>
+                            </div>
                         </div>
-                        <div class="team-member">
-                            <img src="assets/img/Miil.jpg" alt="Miil">
-                            <h5> Miil Saputri </h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/RIFKI.jpg" alt="Rifki">
-                            <h5>Rifki Hamdani</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Naza.jpg" alt="Naza">
-                            <h5>Roudhotulloh Nazakhan</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/zaidan.jpg" alt="Zaidan">
-                            <h5>Zaidan Adli Wibawa</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Anni.jpg" alt="Anni">
-                            <h5>Anni Kholilah</h5>
-                        </div>
-                    </div>
-                    <div class="team-row">
-                        <div class="team-member">
-                            <img src="assets/img/EZRA A Y.jpg" alt="Ezra">
-                            <h5>Ezra Anang Yudhistira</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Hana.jpg" alt="Hana">
-                            <h5>Siti Rohanah</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Iren Y.JPG" alt="Iren">
-                            <h5> Iren Yolanda Sitompul</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Alawiyah.jpg" alt="Ala">
-                            <h5>Imaroh Alawiyah</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Nurani Gita Safitri.jpg" alt="Gita">
-                            <h5>Nurani Gita Safitri</h5>
-                        </div>
-                        <div class="team-member">
-                            <img src="assets/img/Karan.jpg" alt="Karan">
-                            <h5>Karan Bagas Adrian</h5>
-                        </div>
-                    </div>
-                    </div>
+                </div>
 
-                    <!-- mentor popup -->
-                    <div class="popup" id="mentorPopup-1">
-                        <div class="popup-content">
-                            <img src="assets/img/foto.jpg" alt="Mentor Image">
-                            <h3>Kak Hendra</h3>
-                            <p> Mentor SE</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                <!-- mentor popup -->
+                <div class="popup" id="mentorPopup-1">
+                    <div class="popup-content">
+                        <img src="assets/img/Revou_Logo.png" alt="Mentor Image">
+                        <h3>Kak Hendra</h3>
+                        <p> Mentor SE</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="mentorPopup-2">
-                        <div class="popup-content">
-                            <img src="assets/img/foto.jpg" alt="Mentor Image">
-                            <h3> Kak Nandi </h3>
-                            <p>Mentor DA</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="mentorPopup-2">
+                    <div class="popup-content">
+                        <img src="assets/img/Revou_Logo.png" alt="Mentor Image">
+                        <h3> Kak Nandi </h3>
+                        <p>Mentor DA</p>
+                        <span class="close-icon">&times;</span>
                     </div>
+                </div>
 
-                    <!-- team pop up -->
-                    <div class="popup" id="popup-1">
-                        <div class="popup-content">
-                            <img src="assets/img/IAN.png" alt="Ian">
-                            <h3>Ian Syadewa</h3>
-                            <p>Hubungan Internasional'21</p>
-                            <p>UPN Veteran Jakarta</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                <!-- team pop up -->
+                <div class="popup" id="popup-1">
+                    <div class="popup-content">
+                        <img src="assets/img/IAN.png" alt="Ian">
+                        <h3>Ian Syadewa</h3>
+                        <p>Hubungan Internasional'21</p>
+                        <p>UPN Veteran Jakarta</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-2">
-                        <div class="popup-content">
-                            <img src="assets/img/Miil.jpg" alt="Miil">
-                            <h3> Miil Saputri</h3>
-                            <p>Teknik Informatika'21</p>
-                            <p>STMIK Widya Utama</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-2">
+                    <div class="popup-content">
+                        <img src="assets/img/Miil.jpg" alt="Miil">
+                        <h3> Miil Saputri</h3>
+                        <p>Teknik Informatika'21</p>
+                        <p>STMIK Widya Utama</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-3">
-                        <div class="popup-content">
-                            <img src="assets/img/RIFKI.jpg" alt="Rifki">
-                            <h3>Rifki Hamdani</h3>
-                            <p>Sistem Informasi'21</p>
-                            <p>STMIK Indonesia Mandiri</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-3">
+                    <div class="popup-content">
+                        <img src="assets/img/RIFKI.jpg" alt="Rifki">
+                        <h3>Rifki Hamdani</h3>
+                        <p>Sistem Informasi'21</p>
+                        <p>STMIK Indonesia Mandiri</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-4">
-                        <div class="popup-content">
-                            <img src="assets/img/Naza.jpg" alt="Naza">
-                            <h3>Roudhotulloh Nazakhan</h3>
-                            <p>Teknik informatika'21</p>
-                            <p>Universitas Negeri Malang</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-4">
+                    <div class="popup-content">
+                        <img src="assets/img/Naza.jpg" alt="Naza">
+                        <h3>Roudhotulloh Nazakhan</h3>
+                        <p>Teknik informatika'21</p>
+                        <p>Universitas Negeri Malang</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-5">
-                        <div class="popup-content">
-                            <img src="assets/img/zaidan.jpg" alt="Zaidan">
-                            <h3>Zaidan Adli Wibawa</h3>
-                            <p>Sistem Informasi'21</p>
-                            <p>Universitas Negeri Semarang</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-5">
+                    <div class="popup-content">
+                        <img src="assets/img/zaidan.jpg" alt="Zaidan">
+                        <h3>Zaidan Adli Wibawa</h3>
+                        <p>Sistem Informasi'21</p>
+                        <p>Universitas Negeri Semarang</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-6">
-                        <div class="popup-content">
-                            <img src="assets/img/Anni.jpg" alt="Anni">
-                            <h3>Anni Kholilah</h3>
-                            <p>Teknik Informatika'21</p>
-                            <p>Universitas Cendekia Abditama</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-6">
+                    <div class="popup-content">
+                        <img src="assets/img/Anni.jpg" alt="Anni">
+                        <h3>Anni Kholilah</h3>
+                        <p>Teknik Informatika'21</p>
+                        <p>Universitas Cendekia Abditama</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-7">
-                        <div class="popup-content">
-                            <img src="assets/img/EZRA A Y.jpg" alt="Ezra">
-                            <h3>Ezra Anang Yudhistira</h3>
-                            <p>Posisi: Anggota Team</p>
-                            <p>Asal Universitas: Universitas ABC</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-7">
+                    <div class="popup-content">
+                        <img src="assets/img/EZRA A Y.jpg" alt="Ezra">
+                        <h3>Ezra Anang Yudhistira</h3>
+                        <p>Posisi: Anggota Team</p>
+                        <p>Asal Universitas: Universitas ABC</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-8">
-                        <div class="popup-content">
-                            <img src="assets/img/Hana.jpg" alt="Hana">
-                            <h3>Siti Rohanah</h3>
-                            <p>Manajemen'21</p>
-                            <p>Universitas Mercu Buana Jakarta</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-8">
+                    <div class="popup-content">
+                        <img src="assets/img/Hana.jpg" alt="Hana">
+                        <h3>Siti Rohanah</h3>
+                        <p>Manajemen'21</p>
+                        <p>Universitas Mercu Buana Jakarta</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-9">
-                        <div class="popup-content">
-                            <img src="assets/img/Iren Y.JPG" alt="Iren">
-                            <h3>Iren Yolanda Sitompul</h3>
-                            <p>Fisika'21</p>
-                            <p>Universitas Gadjah Mada</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-9">
+                    <div class="popup-content">
+                        <img src="assets/img/Iren Y.JPG" alt="Iren">
+                        <h3>Iren Yolanda Sitompul</h3>
+                        <p>Fisika'21</p>
+                        <p>Universitas Gadjah Mada</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-10">
-                        <div class="popup-content">
-                            <img src="assets/img/Alawiyah.jpg" alt="Ala">
-                            <h3>Imaroh Alawiyah</h3>
-                            <p>Hubungan Internasional'21</p>
-                            <p>Universitas Jember</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-10">
+                    <div class="popup-content">
+                        <img src="assets/img/Alawiyah.jpg" alt="Ala">
+                        <h3>Imaroh Alawiyah</h3>
+                        <p>Hubungan Internasional'21</p>
+                        <p>Universitas Jember</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-11">
-                        <div class="popup-content">
-                            <img src="assets/img/Nurani Gita Safitri.jpg" alt="Gita">
-                            <h3>Nurani Gita Safitri</h3>
-                            <p>Manajemen'21</p>
-                            <p>Universitas Jenderal Soedirman</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-11">
+                    <div class="popup-content">
+                        <img src="assets/img/Nurani Gita Safitri.jpg" alt="Gita">
+                        <h3>Nurani Gita Safitri</h3>
+                        <p>Manajemen'21</p>
+                        <p>Universitas Jenderal Soedirman</p>
+                        <span class="close-icon">&times;</span>
                     </div>
-                    <div class="popup" id="popup-12">
-                        <div class="popup-content">
-                            <img src="assets/img/Karan.jpg" alt="Karan">
-                            <h3>Karan Bagas Adrian</h3>
-                            <p>Pendidikan Guru Sekolah Dasar'21</p>
-                            <p>Universitas Pendidikan Indonesia</p>
-                            <span class="close-icon">&times;</span>
-                        </div>
+                </div>
+                <div class="popup" id="popup-12">
+                    <div class="popup-content">
+                        <img src="assets/img/Karan.jpg" alt="Karan">
+                        <h3>Karan Bagas Adrian</h3>
+                        <p>Pendidikan Guru Sekolah Dasar'21</p>
+                        <p>Universitas Pendidikan Indonesia</p>
+                        <span class="close-icon">&times;</span>
                     </div>
+                </div>
 
             </div>
             </div>

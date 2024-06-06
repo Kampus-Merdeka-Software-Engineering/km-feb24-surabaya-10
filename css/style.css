@@ -1,9 +1,14 @@
+/* Definisi variabel warna utama untuk tema */
 :root {
     --primary: #FFDE3E;
+    /* Warna utama */
     --secondary: #1C2833;
+    /* Warna sekunder */
     --bg-primary: #1c28337b;
+    /* Warna latar belakang utama dengan transparansi */
 }
 
+/* Gaya dasar untuk elemen body */
 body {
     margin: 0;
     padding: 0;
@@ -13,6 +18,169 @@ body {
     color: var(--secondary);
 }
 
+/* Gaya CSS untuk landing page*/
+.landing-page {
+    display: flex;
+    margin: 5vh;
+    text-align: center;
+    background: #ffffff;
+    position: fixed;
+    text-align: left;
+    margin-left: 5vw;
+    width: 100vw;
+    height: 100vh;
+}
+
+.logos {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 11vw;
+    height: 7vh;
+    border-radius: 0 40px 40px 0;
+    transition: background-color 0.3s;
+    box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logos img {
+    margin: 1vw;
+    size-adjust: auto;
+    width: 3vw;
+    max-width: 100%;
+    height: auto;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.background img {
+    margin-bottom: 0;
+    width: auto;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.keterangan {
+    width: 40vw;
+    z-index: 10;
+    position: relative; 
+}
+
+.keterangan h1 {
+    font-size: 3.5vw;
+    margin-top: 20vh;
+    position: relative;
+    color: solid black;
+    text-shadow: 1px 1px 0 #aaa,
+                 2px 2px 0 #777777,
+                 3px 3px 0 #454444,
+                 4px 4px 0 #aaa,
+                 5px 5px 0 #bdbdbd,
+                 6px 6px 0 #b9b9b9,
+                 7px 7px 0 #ffffff,
+                 8px 8px 0 #ffffff,
+                 9px 9px 0 #ffffff,
+                 10px 10px 0 #ffffff; /* Menambahkan beberapa bayangan untuk efek 3D */
+}
+
+.keterangan h3 {
+    font-size: 1vw;
+}
+
+p {
+    width: 30vw;
+    font-size: 1vw;
+}
+
+#enterButton {
+    background-color: #FFDE3E;
+    color: black;
+    border: none;
+    width: 10vw;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1vw;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 40px;
+    transition: background-color 0.3s;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+#enterButton:hover {
+    background-color: #1C2833;
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Media queries untuk  tampilan mobile */
+@media (max-width: 768px) {
+    .logos {
+        width: 18vw;
+    }
+
+    .logos img {
+        width: 6vw;
+    }
+
+    .keterangan {
+        width: 60%;
+    }
+
+    .background {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+/* Media query untuk mengubah background image pada orientasi potret */
+    .background img {
+        content: url('../assets/img/potrait.png');
+    }
+    .background img {
+        margin-top: 50%;
+        width: 100vw;
+        height: auto;
+    }
+    .keterangan {
+        width: 100vw;
+        text-align: center;
+    }
+    .keterangan h1 {
+        font-size: 4vw;
+        margin-top: 10vh;
+    }
+    .keterangan h3 {
+        font-size: 2vw;
+        text-align: left;
+    }
+    p {
+        width: 50vw;
+        margin-left: 25%;
+        font-size: 2vw;
+    }
+    #enterButton {
+        width: 15vw;
+        height: 3vh;
+        font-size: 2vw;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+/* Gaya untuk header dan navbar */
 header {
     width: 100%;
     height: 60px;
@@ -27,8 +195,8 @@ nav {
     color: var(--primary);
 }
 
-nav h4{
-    font-size: 1.8vw;
+nav h4 {
+    font-size: 1.6vw;
 }
 
 #logo {
@@ -51,6 +219,8 @@ nav h4{
     margin: 0 20px 0 20px;
 }
 
+
+/* Gaya untuk mengatur elemen utama dan sidebar */
 main {
     padding-top: 60px;
     display: flex;
@@ -68,7 +238,7 @@ ul {
 }
 
 #sidebar {
-    margin: 0;
+    margin-left: 1vw;
     padding: 0;
     width: 9vw;
     background-color: white;
@@ -103,9 +273,10 @@ ul {
 }
 
 
+/*Mengatur tata letak konten utama dengan scroll otomatis*/
 #contents {
-    width: calc(100vw - 9vw);
-    margin-left: 9vw;
+    width: calc(100vw - 10vw);
+    margin-left: 10vw;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -130,7 +301,7 @@ footer {
     color: lightcyan;
 }
 
-footer h5{
+footer h5 {
     font-size: 1vw;
 }
 
@@ -209,6 +380,7 @@ footer h5{
     font-family: sans-serif;
     font-size: 1.6vw;
     text-align: center;
+    margin-bottom: 8vh;
 }
 
 #grid-container {
@@ -245,29 +417,29 @@ footer h5{
     border: 0 5px solid #7f8994;
     border-radius: 10px;
     gap: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     justify-content: space-between
 }
 
 .section__title {
-    font-size: 1.6vw;
+    font-size: 1.5vw;
     font-weight: bold;
     margin: 2vh;
 }
 
 .section canvas {
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
 }
 
 .section__total-revenue {
-    font-size: 2em;
-    color: var(--bg-primary);
+    font-size: 2.5vw;
+    color: var(--secondary);
     box-sizing: content-box;
 }
 
 .section__total-transaction {
-    font-size: 2em;
-    color: var(--bg-primary);
+    font-size: 2.5vw;
+    color: var(--secondary);
     box-sizing: content-box;
 }
 
@@ -283,6 +455,7 @@ footer h5{
     display: flex;
     flex-direction: column;
     text-align: center;
+    row-gap: 1vh;
 }
 
 .stats {
@@ -295,6 +468,10 @@ footer h5{
     font-size: 12px;
 }
 
+.action h1 {
+    font-size: 2.2vw;
+}
+
 #prevPage,
 #nextPage {
     background-color: #FFDE3E;
@@ -305,7 +482,7 @@ footer h5{
     border: 1px solid #1C2833;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 1vw;
     font-weight: bold;
 
 }
@@ -321,12 +498,13 @@ footer h5{
 .filter__data {
     background-color: #f7f7f7;
     /* Ubah warna latar belakang filter */
-    padding: 10px;
+    padding: 1.2vw;
+    font-size: 1.1vw;
     border: 1px solid #ddd;
     border-radius: 5px;
     width: 25vw;
     /* Ubah lebar filter */
-    margin: 10px;
+    margin: 1vh;
 }
 
 .filter__data label {
@@ -336,7 +514,7 @@ footer h5{
 .filter__data input[type="text"] {
     width: 20vw;
     /* Ubah lebar input text */
-    font-size: 12px;
+    font-size: 1vw;
     padding: 3px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -346,7 +524,7 @@ footer h5{
 .filter__data select {
     max-width: 20vh;
     /* Ubah lebar select */
-    font-size: 12px;
+    font-size: 1vw;
     padding: 3px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -360,7 +538,7 @@ footer h5{
     color: #333;
     overflow: auto;
     /* Ubah warna teks */
-    font-size: 8px;
+    font-size: 0.7vw;
 }
 
 tbody tr:nth-child(odd) {
@@ -485,6 +663,7 @@ tbody tr:nth-child(even) {
     color: white;
 }
 
+
 /* Style untuk tampilan mobile */
 @media (max-width: 768px) {
     #sidebar {
@@ -515,7 +694,6 @@ tbody tr:nth-child(even) {
         margin-top: 40px;
     }
 
-
     .loader {
         width: 60px;
         height: 60px;
@@ -537,10 +715,10 @@ tbody tr:nth-child(even) {
 }
 
 
-
-.profile{
+/*Gaya untuk halaman team*/
+.profile {
     display: grid;
-row-gap: 7vh;
+    row-gap: 7vh;
 }
 
 .mentor-container {
@@ -555,7 +733,7 @@ row-gap: 7vh;
     text-align: center;
 }
 
-.mentors h2{
+.mentors h2 {
     font-size: 2vw;
     text-align: center;
 }
@@ -600,7 +778,7 @@ row-gap: 7vh;
     justify-content: center;
 }
 
-.team h2{
+.team h2 {
     font-size: 2vw;
     text-align: center;
 }
@@ -611,7 +789,7 @@ row-gap: 7vh;
     margin-left: 2vw;
 }
 
-.team-member h5{
+.team-member h5 {
     margin-bottom: 1vh;
     font-size: 1.1vw;
 }
@@ -683,7 +861,7 @@ row-gap: 7vh;
     padding: 5px;
 }
 
-/* Ensure responsive layout */
+/* Gaya khusus untuk tampilan mobile. Ensure responsive layout. */
 @media screen and (max-width: 768px) {
     .mentor-container {
         flex-direction: column;
