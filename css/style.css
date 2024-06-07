@@ -122,68 +122,6 @@ p {
     display: none;
 }
 
-/* Media queries untuk tampilan mobile halaman landing page*/
-@media (max-width: 768px) {
-    .logos {
-        width: 18vw;
-    }
-
-    .logos img {
-        width: 6vw;
-    }
-
-    .keterangan {
-        width: 60%;
-    }
-
-    .background {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-    }
-
-    /* Media query untuk mengubah background image pada orientasi potret */
-    .background img {
-        content: url('../assets/img/potrait.png');
-    }
-
-    .background img {
-        margin-top: 50%;
-        width: 100vw;
-        height: auto;
-    }
-
-    .keterangan {
-        width: 100vw;
-        text-align: center;
-    }
-
-    .keterangan h1 {
-        font-size: 4vw;
-        margin-top: 10vh;
-    }
-
-    .keterangan h3 {
-        font-size: 2vw;
-        text-align: left;
-    }
-
-    p {
-        width: 50vw;
-        margin-left: 25%;
-        font-size: 2vw;
-    }
-
-    #enterButton {
-        width: 15vw;
-        height: 3vh;
-        font-size: 2vw;
-        padding: 0;
-        justify-content: center;
-    }
-}
-
 
 
 
@@ -242,6 +180,7 @@ ul {
 
 #sidebar {
     margin-left: 1vw;
+    margin-top: 0.3vw;
     padding: 0;
     width: 9vw;
     background-color: white;
@@ -534,7 +473,7 @@ footer {
     color: #333;
     overflow: auto;
     /* Ubah warna teks */
-    font-size: 0.7vw;
+    font-size: 10px;
 }
 
 tbody tr:nth-child(odd) {
@@ -826,6 +765,77 @@ thead th {
 
 /* Gaya khusus untuk tampilan mobile. Ensure responsive layout. */
 @media (min-width: 601px) and (max-width: 1024px) {
+    .landing-page {
+        margin-right: 5vw;
+        margin-left: 0;
+    }
+
+    .logos {
+        margin-left: 5vw;
+        width: 140px;
+        height: 50px;
+    }
+
+    .logos img {
+        width: 40px;
+    }
+
+    .background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Adjust height as needed */
+        z-index: 1;
+    }
+
+    /* Media query untuk mengubah background image pada orientasi potret */
+    .background img {
+        content: url('../assets/img/potrait.png');
+    }
+
+    .background img {
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .keterangan {
+        width: 100vw;
+        text-align: center;
+    }
+
+    .keterangan h1 {
+        font-size: 30px;
+        margin-top: 10vh;
+    }
+
+    .keterangan h3 {
+        margin-left: 5vw;
+        font-size: 12px;
+        text-align: left;
+    }
+
+    p {
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+        padding: 8px;
+        background-color: #ffffff;
+        width: 70vw;
+        margin-left: 15%;
+        font-size: 12px;
+    }
+
+    #enterButton {
+        width: 100px;
+        height: 30px;
+        font-size: 15px;
+        padding: 0;
+        justify-content: center;
+    }
+
     .mentor-container {
         flex-direction: row;
         max-width: 100%;
@@ -846,7 +856,8 @@ thead th {
         width: 100%;
         height: 35px;
         position: fixed;
-        margin: 0;
+        margin-left: 0;
+        margin-top: 1vw;
         background-color: #ffffff;
     }
 
@@ -876,7 +887,6 @@ thead th {
         margin-top: 25px;
     }
 
-
     .loader {
         width: 60px;
         height: 60px;
@@ -899,6 +909,11 @@ thead th {
         display: flex;
         flex-direction: column;
         height: max-content;
+        margin-bottom: 3vh;
+    }
+
+    #filter__dashboard select {
+        font-size: 18px;
     }
 
     #prevPage,
@@ -954,16 +969,87 @@ thead th {
     }
 
     footer h5 {
-        font-size: 10px;
+        font-size: 14px;
     }
 }
 
 
 /* Style untuk tampilan mobile halaman contents */
 @media (max-width: 600px) {
+    .landing-page {
+        margin-right: 5vw;
+        margin-left: 0;
+    }
+
+    .logos {
+        margin-left: 5vw;
+        width: 110px;
+        height: 40px;
+    }
+
+    .logos img {
+        width: 30px;
+    }
+
+    .background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Adjust height as needed */
+        z-index: 1;
+    }
+
+    /* Media query untuk mengubah background image pada orientasi potret */
+    .background img {
+        content: url('../assets/img/potrait.png');
+    }
+
+    .background img {
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .keterangan {
+        width: 100vw;
+        text-align: center;
+    }
+
+    .keterangan h1 {
+        font-size: 25px;
+        margin-top: 10vh;
+        text-align: center;
+    }
+
+    .keterangan h3 {
+        font-size: 13px;
+        text-align: left;
+        margin-left: 5vw;
+    }
+
+    p {
+        margin-left: 15%;
+        width: 70vw;
+        font-size: 12px;
+    }
+
+    #enterButton {
+        width: 15vw;
+        height: 3vh;
+        font-size: 2vw;
+        padding: 0;
+        justify-content: center;
+    }
+
     #sidebar {
         width: 100%;
         height: 4vh;
+        margin-left: 0;
+        margin-top: 1vw;
         position: fixed;
         background-color: #f1f1f1;
     }
@@ -1003,7 +1089,7 @@ thead th {
     .section__title,
     .section__total-revenue,
     .section__total-transaction {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     #grid-container {
@@ -1014,22 +1100,23 @@ thead th {
     #filter__dashboard {
         display: flex;
         flex-direction: row;
+        margin-bottom: 3vh;
     }
 
     #filter__dashboard select {
         width: auto;
-        font-size: 10px;
+        font-size: 18px;
     }
 
     #judul {
         font-family: sans-serif;
-        font-size: 15px;
+        font-size: 20px;
         text-align: center;
         margin-bottom: 8vh;
     }
 
     footer {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .action {
