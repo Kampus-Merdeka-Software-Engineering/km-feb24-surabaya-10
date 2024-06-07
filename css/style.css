@@ -122,7 +122,7 @@ p {
     display: none;
 }
 
-/* Media queries untuk  tampilan mobile */
+/* Media queries untuk tampilan mobile halaman landing page*/
 @media (max-width: 768px) {
     .logos {
         width: 18vw;
@@ -304,9 +304,6 @@ footer {
     color: lightcyan;
 }
 
-footer h5 {
-    font-size: 1vw;
-}
 
 /* Style untuk scroll bar vertikal */
 ::-webkit-scrollbar {
@@ -319,7 +316,7 @@ footer h5 {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary);
+    background: var(--bg-primary);
     border-radius: 10px;
     min-height: 10px;
     width: 10px;
@@ -406,12 +403,6 @@ footer h5 {
     border-radius: 5px;
     text-align: start;
     margin-bottom: 5px;
-}
-
-#note {
-    font-family: arial;
-    font-size: 1vw;
-    text-align: left;
 }
 
 .section {
@@ -505,7 +496,7 @@ footer h5 {
     font-size: 1.1vw;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 25vw;
+    width: 30vw;
     /* Ubah lebar filter */
     margin: 1vh;
 }
@@ -529,7 +520,6 @@ footer h5 {
 .filter__data select {
     width: 50%;
     float: right;
-    /* Ubah lebar select */
     font-size: 1vw;
     padding: 3px;
     border: 1px solid #ccc;
@@ -672,7 +662,6 @@ tbody tr:nth-child(even) {
 
 
 
-
 /*Gaya untuk halaman team*/
 .profile {
     display: grid;
@@ -692,13 +681,13 @@ tbody tr:nth-child(even) {
 }
 
 .mentors h2 {
-    font-size: 2vw;
+    font-size: 25px;
     text-align: center;
 }
 
 .mentor h5 {
     margin-bottom: 1vh;
-    font-size: 1.1vw;
+    font-size: 15px;
 }
 
 .mentor-profile {
@@ -737,7 +726,7 @@ tbody tr:nth-child(even) {
 }
 
 .team h2 {
-    font-size: 2vw;
+    font-size: 25px;
     text-align: center;
 }
 
@@ -749,7 +738,7 @@ tbody tr:nth-child(even) {
 
 .team-member h5 {
     margin-bottom: 1vh;
-    font-size: 1.1vw;
+    font-size: 15px;
 }
 
 .team-member img {
@@ -800,11 +789,11 @@ tbody tr:nth-child(even) {
 }
 
 .popup-content img {
-    width: 10vw;
-    height: 10vw;
+    width: 12vw;
+    height: 12vw;
     border-radius: 50%;
     margin-bottom: 10px;
-    /* Margin bawah 10px */
+    border: 5px solid var(--primary);
 }
 
 .close-icon {
@@ -820,15 +809,15 @@ tbody tr:nth-child(even) {
 }
 
 /* Gaya khusus untuk tampilan mobile. Ensure responsive layout. */
-@media screen and (max-width: 768px) {
+@media (min-width: 601px) and (max-width: 1024px) {
     .mentor-container {
-        flex-direction: column;
+        flex-direction: row;
         max-width: 100%;
         gap: 20px;
     }
 
     .team-row {
-        flex-direction: column;
+        flex-direction: row;
         width: 100%;
     }
 
@@ -839,7 +828,7 @@ tbody tr:nth-child(even) {
 
     #sidebar {
         width: 100%;
-        height: 26px;
+        height: 35px;
         position: fixed;
         margin: 0;
         background-color: #f1f1f1;
@@ -876,8 +865,128 @@ tbody tr:nth-child(even) {
         height: 60px;
     }
 
+    #judul {
+        font-size: 15px;
+    }
+    
     .section__title {
         font-size: 18px;
+    }
+
+    #grid-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #filter__dashboard {
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+    }
+
+    #prevPage,
+    #nextPage {
+        font-size: 10px;
+    }
+
+    .filter__data select {
+        width: 50%;
+        margin-left: 10px;
+    }
+
+    .mentors h2,
+    .team h2 {
+        font-size: 20px;
+    }
+
+    .mentor h5,
+    .team-member h5 {
+        font-size: 12px;
+        margin-bottom: 5vh;
+    }
+
+    .team-member {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .team-member img,
+    .mentor-profile img {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .popup {
+        right: 25vw;
+        height: 40vh;
+    }
+
+    .popup-content h3 {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .popup-content p {
+        font-size: 10px;
+        margin: 4px 0;
+    }
+
+    .popup-content img {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    footer h5 {
+        font-size: 10px;
+    }
+}
+
+
+/* Style untuk tampilan mobile halaman contents */
+@media (max-width: 600px) {
+    #sidebar {
+        width: 100%;
+        height: 4vh;
+        position: fixed;
+        background-color: #f1f1f1;
+    }
+
+    #sidebar a.active {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #sidebar a {
+        margin-top: 0;
+        margin-right: 5px;
+        float: left;
+        padding: 0;
+    }
+
+    #sidebar h5 {
+        padding: 1vw;
+        font-size: 2vw;
+        margin: 0;
+    }
+
+    #sidebar a:hover:not(.active) {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #contents {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 4vh;
+    }
+
+    .loader {
+        width: 60px;
+        height: 60px;
+    }
+
+    .section__title,
+    .section__total-revenue,
+    .section__total-transaction {
+        font-size: 15px;
     }
 
     #grid-container {
@@ -890,28 +999,109 @@ tbody tr:nth-child(even) {
         flex-direction: row;
     }
 
-    .filter__data {
-        width: 26vw;
+    #filter__dashboard select {
+        width: auto;
+        font-size: 10px;
     }
 
-    .filter__data select {
+    #judul {
+        font-family: sans-serif;
+        font-size: 15px;
+        text-align: center;
+        margin-bottom: 8vh;
+    }
+
+    footer {
+        font-size: 10px;
+    }
+
+    .action {
+        font-size: 2vw;
+    }
+
+    .action h1 {
+        font-size: 3vw;
+    }
+
+    #prevPage,
+    #nextPage {
+        font-size: 8px;
+    }
+    
+    .filter__data label {
+        font-size: 10px;
+    }
+    
+    .filter__data select{
+        font-size: 7px;
         width: 50%;
         margin-left: 10px;
+    } 
+
+    .modal-text {
+        font-size: 2vw;
+        text-align: left;
     }
 
-    .popup {
-        right: 25vw;
-        width: 50vw;
+    .modal__button {
+        font-size: 2vw;
+    }
+
+    .profile {
+        display: contents;
+    }
+
+    .mentor-container {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+        gap: 20px;
+    }
+
+    .team-row {
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .mentors h2,
+    .team h2 {
+        margin-top: 3vh;
+        font-size: 3vw;
+    }
+
+    .mentor h5,
+    .team-member h5 {
+        font-size: 2vw;
+        margin-bottom: 5vh;
+    }
+
+    .team-member {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .team-member img,
+    .mentor-profile img {
+        width: 10vw;
+        height: 10vw;
     }
 
     .popup-content img {
-        width: 200px;
-        height: 200px;
-        border: 5px solid var(--primary);
+        width: 26vw;
+        height: 26vw;
     }
 
-    .popup-content {
-        width: 50vw;
-        height: 50%;
+    .popup-content h3 {
+        text-align: center;
+        font-size: 2.3vw;
+    }
+
+    .popup {
+        width: 35vw;
+        height: 40vh;
+    }
+
+    .popup-content p {
+        margin: 4px 0;
     }
 }
