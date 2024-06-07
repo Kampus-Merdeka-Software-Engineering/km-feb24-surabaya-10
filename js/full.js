@@ -1,5 +1,7 @@
-////LANDING PAGE
+
 document.addEventListener('DOMContentLoaded', function () {
+
+    ////LANDING PAGE
     const landingPage = document.getElementById('landingPage');
     const header = document.getElementById('header');
     const main = document.getElementById('main');
@@ -10,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Tampilkan overlay loading
         loadingOverlay.style.display = 'flex';
 
-        setTimeout(function() {
+        setTimeout(function () {
             // Sembunyikan overlay loading
             loadingOverlay.style.display = 'none';
 
@@ -25,12 +27,54 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contents').classList.add('active');
 
             // Klik tab default
-            document.getElementById("defaultOpen").click();
+            document.getElementById("Link__dashboard").click();
         }, 500); // Simulasi loading selama 2 detik
     });
+
+    const tablinks = document.querySelectorAll('.tablinks');
+    const tabcontents = document.querySelectorAll('.tabcontent');
+    let openTab = null;
+    let openContent = null;
+
+    tablinks.forEach((tablinks, index) => {
+        tablinks.addEventListener('click', function () {
+            if (openTab) {
+                openTab.classList.remove("active");
+            }
+            if (openContent) {
+                openContent.style.display = 'none'
+            }
+
+            const tabID = tablinks.id;
+            const currentTab = document.getElementById(tabID);
+
+            const contenID = tabcontents[index].id;
+            const currentConten = document.getElementById(contenID);
+
+            currentConten.style.display = "block";
+            openContent = currentConten;
+
+            currentTab.className += " active";
+            openTab = currentTab;
+
+        })
+
+    });
+
+    //fungsi untuk kembali ke halaman landing page
+    document.getElementById('exit').addEventListener('click', () => {
+        const landingPage = document.getElementById('landingPage');
+        const header = document.getElementById('header');
+        const main = document.getElementById('main');
+
+        // Tampilkan halaman landing dan sembunyikan konten utama
+        landingPage.style.display = 'block';
+        header.style.display = 'none';
+        main.style.display = 'none';
+
+    });
+
 });
-
-
 
 ////DASHBOARD
 //mengambil data 
@@ -63,44 +107,56 @@ let ChartClass = CreateChart('bar', 'Dwelling Class Category', classChart, [
     { label: 'Dwelling Class Category', data: calculateRevenueByBuildingClass(dwellings), backgroundColor: '#3e95cd64', borderColor: '#3e95cd' }
 ]);
 
+//menambilkan total pendapatan dan transaksi
 displayTotalRevenue(dwellings);
 displayTotalTransaction(dwellings);
 
+//filter
 filterTahun.addEventListener('change', updateAllCharts);
 boroughDropdown.addEventListener('change', updateAllCharts);
 
-
+// Fungsi untuk memperbarui semua grafik berdasarkan filter dan data yang dipilih
 function updateAllCharts() {
-    const filterValue = filterTahun.value;
-    const selectedBorough = boroughDropdown.value;
+    // Dapatkan nilai filter dari dropdown
+    const filterValue = filterTahun.value; // Filter berdasarkan tahun
+    const selectedBorough = boroughDropdown.value; // Borough yang dipilih
 
-    let filteredDwellings = dwellings;
-    let dataUpdate = data;
+    // Inisialisasi variabel untuk data yang difilter
+    let filteredDwellings = dwellings; // Default semua hunian
+    let dataUpdate = data; // Default semua data
+
+    // Terapkan filter jika nilai filter dipilih
     if (filterValue) {
+        // Filter data berdasarkan tanggal penjualan
         dataUpdate = FilterData(data, 'SALEDATE', filterValue);
         filteredDwellings = FilterData(dwellings, 'SALEDATE', filterValue);
     }
 
+    // Terapkan filter borough jika borough tertentu dipilih
     if (selectedBorough !== "ALL BOROUGH") {
+        // Filter data berdasarkan borough yang dipilih
         dataUpdate = data.filter(item => item.BOROUGH == selectedBorough);
         filteredDwellings = filteredDwellings.filter(item => item.BOROUGH == selectedBorough);
     }
 
-    console.log(dataUpdate, filteredDwellings); // Debugging to check filtered data
-
+    // Perbarui grafik dengan data yang difilter
+    // Perbarui grafik untuk penjualan berdasarkan bulan dan tahun
     updateChartData(chartSaleAll, [
-        countDataByMonthAndYear(dataUpdate),
-        countDataByMonthAndYear(filteredDwellings)
+        countDataByMonthAndYear(dataUpdate), // Semua data
+        countDataByMonthAndYear(filteredDwellings) // Data yang difilter
     ]);
 
+    // Perbarui grafik untuk penjualan berdasarkan borough
     updateChartData(ChartBorougharea, [
-        countSalesByBorough(filteredDwellings)
+        countSalesByBorough(filteredDwellings) // Data yang difilter berdasarkan borough
     ]);
 
+    // Perbarui grafik untuk pendapatan berdasarkan kelas bangunan
     updateChartData(ChartClass, [
-        calculateRevenueByBuildingClass(filteredDwellings)
+        calculateRevenueByBuildingClass(filteredDwellings) // Data yang difilter berdasarkan kelas bangunan
     ]);
 
+    // Tampilkan total pendapatan dan total transaksi untuk data yang difilter
     displayTotalRevenue(filteredDwellings);
     displayTotalTransaction(filteredDwellings);
 }
@@ -194,79 +250,85 @@ function CreateChart(type, ChartName, ChartID, datasets) {
 
     return createdChart;
 }
-
+// Fungsi untuk menghitung jumlah data berdasarkan bulan dan tahun dari data penjualan
 function countDataByMonthAndYear(data) {
     return data.reduce((counts, item) => {
         if (item.SALEDATE) {
-            const [year, month] = item.SALEDATE.split('-');
-            const key = `${getMonthName(parseInt(month))} ${year}`;
-            counts[key] = (counts[key] || 0) + 1;
+            const [year, month] = item.SALEDATE.split('-'); // Pisahkan tahun dan bulan dari tanggal penjualan
+            const key = `${getMonthName(parseInt(month))} ${year}`; // Buat kunci dengan nama bulan dan tahun
+            counts[key] = (counts[key] || 0) + 1; // Tambahkan jumlah penjualan ke dalam objek counts
         } else {
-            console.warn('Invalid SALEDATE format:', item.SALEDATE);
+            console.warn('Format SALEDATE tidak valid:', item.SALEDATE); // Tampilkan pesan jika format tanggal penjualan tidak valid
         }
         return counts;
     }, {});
 }
 
+// Fungsi untuk mendapatkan nama bulan berdasarkan nomor bulan
 function getMonthName(monthNumber) {
     const months = [
         'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
         'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
     ];
-    return months[monthNumber - 1] || '';
+    return months[monthNumber - 1] || ''; // Mengembalikan nama bulan berdasarkan nomor bulan
 }
 
+// Fungsi untuk melakukan filter data berdasarkan kolom dan nilai tertentu
 function FilterData(data, column, value) {
     if (column === 'SALEDATE') {
-        return data.filter(dataset => dataset[column].startsWith(value));
+        return data.filter(dataset => dataset[column].startsWith(value)); // Filter berdasarkan awalan nilai untuk kolom SALEDATE
     }
-    return data.filter(dataset => dataset[column].includes(value));
+    return data.filter(dataset => dataset[column].includes(value)); // Filter berdasarkan nilai yang terdapat dalam kolom
 }
 
+// Fungsi untuk menampilkan total pendapatan dari data penjualan
 function displayTotalRevenue(data) {
     let totalRevenue = 0;
     data.forEach(item => {
-        const salePrice = parseFloat(item.SALEPRICE);
-        if (!isNaN(salePrice)) {
-            totalRevenue += salePrice;
+        const salePrice = parseFloat(item.SALEPRICE); // Ambil harga penjualan dan ubah ke dalam tipe data float
+        if (!isNaN(salePrice)) { // Periksa apakah harga penjualan valid
+            totalRevenue += salePrice; // Tambahkan harga penjualan ke total pendapatan
         }
     });
-    document.getElementById('total-revenue').textContent = '$' + formatNumber(totalRevenue);
+    document.getElementById('total-revenue').textContent = '$' + formatNumber(totalRevenue); // Tampilkan total pendapatan dengan format mata uang
 }
 
+// Fungsi untuk menampilkan total transaksi dari data penjualan
 function displayTotalTransaction(data) {
     let count = 0;
     data.forEach(item => {
-        const salePrice = parseFloat(item.SALEPRICE);
-        if (!isNaN(salePrice)) {
-            count++;
+        const salePrice = parseFloat(item.SALEPRICE); // Ambil harga penjualan dan ubah ke dalam tipe data float
+        if (!isNaN(salePrice)) { // Periksa apakah harga penjualan valid
+            count++; // Tambahkan jumlah transaksi
         }
     });
 
-    document.getElementById('total-transaction').textContent = formatNumber(count);;
+    document.getElementById('total-transaction').textContent = formatNumber(count); // Tampilkan jumlah transaksi dengan format angka
 }
 
+// Fungsi untuk menghitung jumlah penjualan berdasarkan borough
 function countSalesByBorough(data) {
     const countsale = {};
     data.forEach(item => {
-        const borough = item.BOROUGH;
-        if (borough) {
-            countsale[borough] = (countsale[borough] || 0) + 1;
+        const borough = item.BOROUGH; // Ambil borough dari data
+        if (borough) { // Pastikan borough tidak kosong
+            countsale[borough] = (countsale[borough] || 0) + 1; // Tambahkan jumlah penjualan berdasarkan borough
         }
     });
-    return countsale;
+    return countsale; // Kembalikan objek dengan jumlah penjualan berdasarkan borough
 }
 
+// Fungsi untuk menghitung pendapatan berdasarkan kelas bangunan
 function calculateRevenueByBuildingClass(data) {
     const revenueByBuildingClass = {};
     data.forEach(item => {
-        const buildingClass = item['BUILDINGCLASSCATEGORY'];
-        const salePrice = parseFloat(item['SALEPRICE']);
-        if (buildingClass && !isNaN(salePrice)) {
-            revenueByBuildingClass[buildingClass] = (revenueByBuildingClass[buildingClass] || 0) + salePrice;
+        const buildingClass = item['BUILDINGCLASSCATEGORY']; // Ambil kelas bangunan dari data
+        const salePrice = parseFloat(item['SALEPRICE']); // Ambil harga penjualan dan ubah ke dalam tipe data float
+        if (buildingClass && !isNaN(salePrice)) { // Periksa apakah kelas bangunan dan harga penjualan valid
+            revenueByBuildingClass[buildingClass] = (revenueByBuildingClass[buildingClass] || 0) + salePrice; // Tambahkan pendapatan berdasarkan kelas bangunan
         }
     });
-    return revenueByBuildingClass;
+    return revenueByBuildingClass; // Kembalikan objek dengan pendapatan berdasarkan kelas bangunan
 }
 
 function formatNumber(num) {
@@ -290,6 +352,26 @@ function formatNumber(num) {
 const pageSize = 100; // Sesuaikan dengan jumlah data per halaman yang diinginkan
 let currentPage = 1;
 let totalPages = Math.ceil(dwellings.length / pageSize);
+const column = [
+    'BOROUGH',
+    'NEIGHBORHOOD',
+    'BUILDINGCLASSCATEGORY',
+    'TAXCLASSATPRESENT',
+    'BLOCK',
+    'LOT',
+    'BUILDINGCLASSATPRESENT',
+    'ADDRESS',
+    'ZIPCODE',
+    'RESIDENTIALUNITS',
+    'COMMERCIALUNITS',
+    'TOTALUNITS',
+    'LANDSQUAREFEET',
+    'GROSSSQUAREFEET',
+    'YEARBUILT',
+    'BUILDINGCLASSATTIMEOFSALE',
+    'SALEPRICE',
+    'SALEDATE',
+]
 
 function displayData(page, dataToDisplay) {
     const startIndex = (page - 1) * pageSize;
@@ -303,27 +385,10 @@ function displayData(page, dataToDisplay) {
     paginatedData.forEach(item => {
         i++;
         const row = document.createElement('tr');
-        row.innerHTML += `
-            <td>${i}</td>
-            <td>${item['BOROUGH']}</td>
-            <td>${item['NEIGHBORHOOD']}</td>
-            <td>${item['BUILDINGCLASSCATEGORY']}</td>
-            <td>${item['TAXCLASSATPRESENT']}</td>
-            <td>${item['BLOCK']}</td>
-            <td>${item['LOT']}</td>
-            <td>${item['BUILDINGCLASSATPRESENT']}</td>
-            <td>${item['ADDRESS']}</td>
-            <td>${item['ZIPCODE']}</td>
-            <td>${item['RESIDENTIALUNITS']}</td>
-            <td>${item['COMMERCIALUNITS']}</td>
-            <td>${item['TOTALUNITS']}</td>
-            <td>${item['LANDSQUAREFEET']}</td>
-            <td>${item['GROSSSQUAREFEET']}</td>
-            <td>${item['YEARBUILT']}</td>
-            <td>${item['BUILDINGCLASSATTIMEOFSALE']}</td>
-            <td>${item['SALEPRICE']}</td>
-            <td>${item['SALEDATE']}</td>
-        `;
+        row.innerHTML += `<td>${i}</td>`;
+        column.forEach(col => {
+            row.innerHTML += `<td>${item[col]}</td>`;
+        });
         tableBody.appendChild(row);
     });
 
@@ -357,59 +422,143 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener untuk pencarian
     document.getElementById('search__data').addEventListener('keypress', event => {
         if (event.key === 'Enter') {
-            const searchTerm = document.getElementById('search__data').value.toLowerCase();
-            const filterBy = document.getElementById('filter__data').value;
-
-            const filteredData = dwellings.filter(item => {
-                const fieldValue = item[filterBy].toString().toLowerCase();
-                return fieldValue.includes(searchTerm);
-            });
-
-            if (filteredData.length === 0) {
-                document.getElementById('noResultsModal').style.display = 'block';
-            } else {
-                currentPage = 1; // Kembalikan ke halaman pertama setelah pencarian
-                totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
-                displayData(currentPage, filteredData); // Tampilkan data hasil pencarian
+            if (activeButton) {
+                removeEventClick();
             }
+            const filteredData = searchDwellings();
+            currentPage = 1; // Kembalikan ke halaman pertama setelah pencarian
+            totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
+            displayData(currentPage, filteredData); // Tampilkan data hasil pencarian
+
         }
     });
 
 
     document.getElementById('closeModal').addEventListener('click', () => {
-        document.getElementById('noResultsModal').style.display = 'none';
+        closeModal()
     });
 
     document.getElementById('closeButton').addEventListener('click', () => {
-        document.getElementById('noResultsModal').style.display = 'none';
+        closeModal()
     });
 
     window.addEventListener('click', event => {
         if (event.target === document.getElementById('noResultsModal')) {
-            document.getElementById('noResultsModal').style.display = 'none';
+            closeModal()
         }
     });
+    //tambah tombol sort
 
+    let activeButton = null; // Variabel untuk menyimpan tombol yang sedang aktif
+    const headers = document.querySelectorAll('.header');
+
+    headers.forEach((header, index) => {
+        if (index > 0) {
+            const button = document.createElement('button');
+            button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+            </svg>`;
+            button.value = column[index - 1];
+            button.addEventListener('click', function () {
+                // Hapus event listener dari tombol sebelumnya jika ada
+                if (activeButton != null && activeButton != button) {
+                    removeEventClick()
+                }
+
+                // Set tombol yang sedang aktif menjadi tombol yang baru di klik
+                activeButton = button;
+
+                // Tambahkan event listener pada tombol yang baru di klik
+                activeButtonClickHandler();
+            });
+
+            header.appendChild(button);
+        }
+    });
     // Event listener untuk perubahan pada filter atau urutan pengurutan
-    document.getElementById('filter__data').addEventListener('change', updateDisplayedData);
-    document.getElementById('sortOrder').addEventListener('change', updateDisplayedData);
+
+    // Fungsi untuk menangani event klik pada tombol yang aktif
+    function activeButtonClickHandler() {
+        const caretUp = activeButton.querySelector('.bi-caret-up-fill');
+        const caretDown = activeButton.querySelector('.bi-caret-down-fill');
+        if (caretUp.style.display === 'block') {
+            caretUp.style.display = 'none';
+            caretDown.style.color = 'red';
+            caretDown.style.display = 'block';
+            updateDisplayedData(activeButton.value, 'desc');
+        } else {
+            caretUp.style.display = 'block';
+            caretUp.style.color = 'green';
+            caretDown.style.display = 'none';
+            updateDisplayedData(activeButton.value, 'asc');
+        }
+    }
+
+    //fungsi remove event klik
+    function removeEventClick() {
+        const caretUp = activeButton.querySelector('.bi-caret-up-fill');
+        const caretDown = activeButton.querySelector('.bi-caret-down-fill');
+        // restyle ke tampilan awal
+        caretUp.style.display = 'block';
+        caretUp.style.color = '';
+        caretDown.style.display = 'none';
+        activeButton.removeEventListener('click', activeButtonClickHandler);//hapus event
+    }
+
+
+    const filter__data = document.getElementById('filter__data');
+    filter__data.addEventListener('change', () => {
+        if (activeButton) {
+            removeEventClick();
+        }
+        updateDisplayedData(filter__data.value, 'asc');
+    });
 
 });
-
-
 // Fungsi untuk mengurutkan data berdasarkan filter yang dipilih dan urutan pengurutan
-function updateDisplayedData() {
-    document.getElementById('search__data').value = '';
-    const filterBy = document.getElementById('filter__data').value;
-    const sortOrder = document.getElementById('sortOrder').value;
-    console.log(filterBy, sortData)
+function updateDisplayedData(filterBy, sortOrder) {
+    const filteredData = searchDwellings();
     // Mengurutkan data hasil pencarian berdasarkan filter yang dipilih dan urutan pengurutan
-    const sortedData = sortData(dwellings, filterBy, sortOrder);
+    const sortedData = sortData(filteredData, filterBy, sortOrder);
 
     currentPage = 1; // Kembalikan ke halaman pertama setelah pengurutan atau perubahan filter
     totalPages = Math.ceil(sortedData.length / pageSize); // Perbarui jumlah halaman
     displayData(currentPage, sortedData); // Tampilkan data hasil pengurutan
 }
+
+//fungsi seacrh data
+function searchDwellings() {
+    const searchTerm = document.getElementById('search__data').value.toLowerCase();
+    const filterBy = document.getElementById('filter__data').value;
+
+    const filteredData = dwellings.filter(item => {
+        const fieldValue = item[filterBy].toString().toLowerCase();
+        return fieldValue.includes(searchTerm);
+    });
+    if (filteredData.length === 0) {
+        document.getElementById('noResultsModal').style.display = 'block';
+    } else {
+        return filteredData;
+    }
+}
+//fungsi close modal data tidak ditemukan
+function closeModal() {
+    const search = document.getElementById('search__data');
+    document.getElementById('noResultsModal').style.display = 'none';
+    search.value = '';
+    search.focus();
+    const filteredData = searchDwellings();
+    currentPage = 1; // Kembalikan ke halaman pertama setelah pencarian
+    totalPages = Math.ceil(filteredData.length / pageSize); // Perbarui jumlah halaman
+    displayData(currentPage, filteredData); // Tampilkan data hasil pencarian
+
+
+}
+
 
 // Fungsi untuk mengurutkan data berdasarkan filter yang dipilih dan urutan pengurutan
 function sortData(dataToSort, filterBy, sortOrder) {
@@ -427,14 +576,7 @@ function sortData(dataToSort, filterBy, sortOrder) {
 
 
 
-
-
-
-
-
-
-
-
+/////// Data Team
 // Variabel global untuk menyimpan pop-up yang saat ini terbuka
 let openPopup = null;
 

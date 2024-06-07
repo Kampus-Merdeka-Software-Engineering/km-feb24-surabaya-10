@@ -552,22 +552,38 @@ tbody tr:nth-child(even) {
     text-align: left;
 }
 
-#dataTable th {
+thead th {
     background-color: #1c2833;
     /* Ubah warna latar belakang header */
     color: white;
-    /* Ubah warna teks header */
 }
 
-#dataTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-    /* Ubah warna latar belakang baris genap */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
 }
+
+.header button {
+    padding: 0;
+    background-color: #1c2833;
+    border: 0;
+    color: #b9b9b9;
+    font-size: 1.5vw;
+}
+
+.bi-caret-down-fill {
+    display: none;
+}
+
 
 #dataTable tr:hover {
     background-color: #ffdf3e72;
     /* Ubah warna latar belakang saat mouse di hover */
 }
+
+
 
 .action {
     display: flex;
@@ -869,7 +885,7 @@ tbody tr:nth-child(even) {
     #judul {
         font-size: 15px;
     }
-    
+
     .section__title {
         font-size: 18px;
     }
@@ -1028,16 +1044,16 @@ tbody tr:nth-child(even) {
     #nextPage {
         font-size: 8px;
     }
-    
+
     .filter__data label {
         font-size: 10px;
     }
-    
-    .filter__data select{
+
+    .filter__data select {
         font-size: 7px;
         width: 50%;
         margin-left: 10px;
-    } 
+    }
 
     .modal-text {
         font-size: 2vw;

@@ -52,7 +52,7 @@
     <main id="main" style="display: none;">
         <section id="sidebar">
             <ul>
-                <li><a class="tablinks" onclick="openCity(event, 'Dashboard')" id="defaultOpen">
+                <li><a class="tablinks" id="Link__dashboard">
                         <h5>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
                                 class="bi bi-speedometer2" viewBox="0 0 16 16">
@@ -65,7 +65,7 @@
                         </h5>
                     </a>
                 </li>
-                <li><a class="tablinks" onclick="openCity(event, 'Data')">
+                <li><a class="tablinks" id="Link__data">
                         <h5>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
                                 class="bi bi-database" viewBox="0 0 16 16">
@@ -76,7 +76,7 @@
                         </h5>
                     </a>
                 </li>
-                <li><a class="tablinks" onclick="openCity(event, 'Team')">
+                <li><a class="tablinks mamang ma" id="Link__team">
                         <h5>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
                                 class="bi bi-people" viewBox="0 0 16 16">
@@ -87,7 +87,7 @@
                         </h5>
                     </a>
                 </li>
-                <li><a class="tablinks" onclick="exitToLandingPage()">
+                <li><a class="tablinks" id="exit">
                         <h5>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
                                 class="bi bi-box-arrow-left" viewBox="0 0 16 16">
@@ -205,36 +205,69 @@
                             <option value='BUILDINGCLASSATTIMEOFSALE'>BUILDING CLASS AT TIME OF SALE</option>
                             <option value='SALEPRICE'>SALE PRICE</option>
                             <option value='SALEDATE'>SALE DATE</option>
-                        </select><br><br>
-                        <label for="sortOrder">Sort</label>
-                        <select name="sortOrder" id="sortOrder">
-                            <option value="asc">Ascending</option>
-                            <option value="desc">Descending</option>
                         </select>
                     </div>
                 </div>
                 <table id="dataTable">
                     <thead>
                         <tr>
-                            <th>NO</th>
-                            <th>BOROUGH</th>
-                            <th>NEIGHBORHOOD</th>
-                            <th>BUILDING CLASS CATEGORY</th>
-                            <th>TAX CLASS AT PRESENT</th>
-                            <th>BLOCK</th>
-                            <th>LOT</th>
-                            <th>BUILDING CLASS AT PRESENT</th>
-                            <th>ADDRESS</th>
-                            <th>ZIP CODE</th>
-                            <th>RESIDENTIAL UNITS</th>
-                            <th>COMMERCIAL UNITS</th>
-                            <th>TOTAL UNITS</th>
-                            <th>LAND SQUARE FEET</th>
-                            <th>GROSS SQUARE FEET</th>
-                            <th>YEAR BUILT</th>
-                            <th>BUILDING CLASS AT TIME OF SALE</th>
-                            <th>SALE PRICE</th>
-                            <th>SALE DATE</th>
+                            <th>
+                                <div class="header">NO</div>
+                            </th>
+                            <th>
+                                <div class="header">BOROUGH</div>
+                            </th>
+                            <th>
+                                <div class="header">NEIGHBORHOOD</div>
+                            </th>
+                            <th>
+                                <div class="header">BUILDING CLASS</div>
+                            </th>
+                            <th>
+                                <div class="header">TAX CLASS AT PRESENT</div>
+                            </th>
+                            <th>
+                                <div class="header">BLOCK</div>
+                            </th>
+                            <th>
+                                <div class="header">LOT</div>
+                            </th>
+                            <th>
+                                <div class="header">BUILDING CLASS AT PRESENT</div>
+                            </th>
+                            <th>
+                                <div class="header">ADDRESS</div>
+                            </th>
+                            <th>
+                                <div class="header">ZIP CODE</div>
+                            </th>
+                            <th>
+                                <div class="header">RESIDENTIAL UNITS</div>
+                            </th>
+                            <th>
+                                <div class="header">COMMERCIAL UNITS</div>
+                            </th>
+                            <th>
+                                <div class="header">TOTAL UNITS</div>
+                            </th>
+                            <th>
+                                <div class="header">LAND SQUARE FEET</div>
+                            </th>
+                            <th>
+                                <div class="header">GROSS SQUARE FEET</div>
+                            </th>
+                            <th>
+                                <div class="header">YEAR BUILT</div>
+                            </th>
+                            <th>
+                                <div class="header">BUILDING CLASS AT TIME OF SALE</div>
+                            </th>
+                            <th>
+                                <div class="header">SALE PRICE</div>
+                            </th>
+                            <th>
+                                <div class="header">SALE DATE</div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody id="dataBody">
@@ -458,7 +491,6 @@
         </section>
     </main>
 
-    <script src="js/tabs.js"></script>
     <script type="module" src="js/full.js"></script>
 </body>
 
