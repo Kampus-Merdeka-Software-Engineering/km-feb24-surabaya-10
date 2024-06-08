@@ -25,9 +25,10 @@
             </section>
             <h3>Team 10 Section Surabaya</h3>
             <h1>Welcome to Our Capstone Project</h1>
-            <p>Our project is based on the results of analysis a dataset of property sales in New York City in the
-                period September 2016-August 2017.
-                We focus on analyzing property sales in the Dwellings Class Category.
+            <h2>New York City Property Sales Website</h3>
+            <p>
+                Our website is based on the analysis of a dataset of property sales in New York City from September 2016 to August 2017. 
+                We specifically focus on analyzing property sales in the Dwellings Class Category.
             </p>
             <button id="enterButton">Click &#9654;</button> <!-- &#9654; adalah kode Unicode untuk tanda panah kanan -->
         </div>
@@ -65,6 +66,7 @@
                         </h5>
                     </a>
                 </li>
+
                 <li><a class="tablinks" id="Link__data">
                         <h5>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
@@ -83,7 +85,7 @@
                                 <path
                                     d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
                             </svg>
-                            Team
+                            About Us
                         </h5>
                     </a>
                 </li>
@@ -105,6 +107,7 @@
             <div id="Dashboard" class="tabcontent">
                 <div id="judul">
                     <h1>Dwellings Sales</h1>
+                    <h6>September 2016 - August 2017</h6>
                 </div>
                 <div id="grid-container">
                     <div class="stats-container" id="filter__dashboard">
@@ -154,6 +157,15 @@
                             <h4 class="section__title">Total Sales per Borough</h4>
                             <canvas id="bar-chart-borough" width="50vw" height="25vh"></canvas>
                         </div>
+                    </div>
+                </div>
+                <div class="insight">
+                    <h4 class="section__title">Insight</h4>
+                    <div id="insights">
+                    <p>Statistic of Dwellings sales and overall class category sales show relatively similar lines. The possible sale of Dwellings has impacted property sales in New York City.</p>
+                    <p>The best-selling Dwellings property sales data was in Queens (4) and dominated by the One Family Dwellings building type.</p>
+                    <p>The Dwellings category with the One Family Dwellings type is more popular with customers than other categories.</p>
+                    <p>The least popular category is the Three Family Dwellings category.</p>
                     </div>
                 </div>
             </div>
@@ -491,7 +503,7 @@
         </section>
     </main>
 
-    <script type="module" src="js/full.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 
 </html>

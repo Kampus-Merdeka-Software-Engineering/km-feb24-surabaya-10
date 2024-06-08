@@ -66,7 +66,7 @@ body {
 }
 
 .keterangan {
-    width: 40vw;
+    width: 35vw;
     z-index: 10;
     position: relative;
 }
@@ -91,6 +91,15 @@ body {
 
 .keterangan h3 {
     font-size: 1vw;
+}
+
+.keterangan h2{
+    font-size: 1.5vw;
+    background-color: var(--secondary); 
+    color: white;
+    text-align: center;
+    padding: 5px; /* Optional: Adds some padding for better appearance */
+    border-radius: 3px; /* Optional: Rounds the corners */
 }
 
 p {
@@ -187,6 +196,7 @@ ul {
     position: fixed;
     height: 100%;
     border-right: 3px solid #1C2833;
+    cursor: pointer;
 }
 
 #sidebar a {
@@ -228,11 +238,17 @@ ul {
 }
 
 .tabcontent {
+    display: none;
     overflow-y: auto;
     overflow-x: auto;
     padding: 1vw;
     width: 100%;
 }
+
+.tabcontent.active {
+    display: block;
+}
+
 
 footer {
     width: 100%;
@@ -319,7 +335,11 @@ footer {
     font-family: sans-serif;
     font-size: 20px;
     text-align: center;
-    margin-bottom: 8vh;
+   
+}
+#judul h6{
+    margin-top: -10px;
+    margin-bottom: 10vh;
 }
 
 #grid-container {
@@ -332,17 +352,50 @@ footer {
 
 }
 
+/* Style for the dropdown container */
 #filter__dashboard select {
-    width: auto;
-    /* Ubah lebar select */
-    font-size: 12px;
-    margin-left: 20px;
-    padding: 2px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: start;
-    margin-bottom: 5px;
+    background-color: var(--secondary); 
+    border: 1px solid #ccc; 
+    padding: 5px; 
+    font-size: 13px;
+    color: #ffffff; 
+    font: bold;
+    border-radius: 10px; 
+    width: 100%; 
+    box-sizing: border-box; 
+    margin-bottom: 10px; 
+    position: relative; 
+    cursor: pointer;
 }
+
+/* Style for the dropdown arrow */
+#filter__dashboard select::after {
+    content: '\25BC'; /* Unicode character for downward arrow */
+    position: absolute;
+    right: 15px; 
+    top: 50%; /* Center arrow vertically */
+    transform: translateY(-50%); /* Center arrow vertically */
+    pointer-events: none; 
+    color: var(--bg-primary); 
+    padding: 10px;
+}
+
+/* Ensure the arrow is visible */
+#filter__dashboard {
+    position: relative; 
+}
+
+#filter__dashboard select {
+    padding-right: 30px; 
+}
+
+/* Extra styling for better UX */
+#filter__dashboard select:focus {
+    border-color: var(--primary); /* Border color on focus */
+    outline: none; /* Remove outline on focus */
+    box-shadow: 0 0 10px var(--primary); /* Add shadow on focus */
+}
+
 
 .section {
     margin: 5px;
@@ -364,12 +417,7 @@ footer {
     margin-bottom: 1vh;
 }
 
-.section__total-revenue {
-    font-size: 2.5vw;
-    color: var(--secondary);
-    box-sizing: content-box;
-}
-
+.section__total-revenue,
 .section__total-transaction {
     font-size: 2.5vw;
     color: var(--secondary);
@@ -395,6 +443,33 @@ footer {
     display: flex;
     gap: 20px;
     justify-content: center;
+}
+
+.insight{
+    display: flex;
+    border-top: 5px solid #000;
+    padding-top: 20px;
+    margin-top: 80px;
+}
+
+.insight h4{
+    background-color: var(--secondary);
+    color: var(--primary);
+    text-shadow: 0 2px 5px #ffffff;
+    border-radius: 0 50px 50px 0;
+    width: 100px;
+    text-align: center;
+    height: max-content;
+    padding: 1vw;
+}
+
+.insight p{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    padding: 8px;
+    background-color: #ffffff;
+    width: 80%;
+    margin-left: 5%;
+    font-size: 12px;
 }
 
 .action {
@@ -758,7 +833,7 @@ thead th {
     font-size: 35px;
     font-weight: bold;
     cursor: pointer;
-    color: #ebbb37;
+    color: var(--secondary);
     border-radius: 50%;
     padding: 5px;
 }
@@ -809,8 +884,9 @@ thead th {
     }
 
     .keterangan h1 {
-        font-size: 30px;
+        font-size: 25px;
         margin-top: 10vh;
+        text-align: center;
     }
 
     .keterangan h3 {
@@ -819,7 +895,14 @@ thead th {
         text-align: left;
     }
 
-    p {
+.keterangan h2{
+        width: 50vw;
+        font-size: 14px;
+        text-align: center;
+        margin-left: 25%;
+    }    
+
+    .keterangan p {
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
         padding: 8px;
         background-color: #ffffff;
@@ -892,12 +975,13 @@ thead th {
         height: 60px;
     }
 
-    #judul {
-        font-size: 15px;
+    .section__title {
+        font-size: 16px;
     }
 
-    .section__title {
-        font-size: 18px;
+    .section__total-revenue,
+    .section__total-transaction {
+        font-size: 18px
     }
 
     #grid-container {
@@ -908,12 +992,11 @@ thead th {
     #filter__dashboard {
         display: flex;
         flex-direction: column;
-        height: max-content;
         margin-bottom: 3vh;
     }
 
     #filter__dashboard select {
-        font-size: 18px;
+        font-size: 15px;
     }
 
     #prevPage,
@@ -921,9 +1004,27 @@ thead th {
         font-size: 10px;
     }
 
+    .action p {
+        font-size: 11px;
+    }
+
+    .filter__data label {
+        font-size: 12px;
+    }
+
     .filter__data select {
+        font-size: 9px;
         width: 50%;
         margin-left: 10px;
+    }
+    
+    .insight h4{
+        font-size: 15px;
+        width: 130px;
+    }
+    
+    .insight p{
+        font-size: 11px;
     }
 
     .mentors h2,
@@ -972,6 +1073,7 @@ thead th {
         font-size: 14px;
     }
 }
+
 
 
 /* Style untuk tampilan mobile halaman contents */
@@ -1025,13 +1127,20 @@ thead th {
         text-align: center;
     }
 
+    .keterangan h2{
+        width: 50vw;
+        font-size: 13px;
+        text-align: center;
+        margin-left: 25%;
+    }  
+
     .keterangan h3 {
         font-size: 13px;
         text-align: left;
         margin-left: 5vw;
     }
 
-    p {
+    .keterangan p {
         margin-left: 15%;
         width: 70vw;
         font-size: 12px;
@@ -1047,11 +1156,11 @@ thead th {
 
     #sidebar {
         width: 100%;
-        height: 4vh;
+        height: 35px;
+        position: fixed;
         margin-left: 0;
         margin-top: 1vw;
-        position: fixed;
-        background-color: #f1f1f1;
+        background-color: #ffffff;
     }
 
     #sidebar a.active {
@@ -1105,7 +1214,7 @@ thead th {
 
     #filter__dashboard select {
         width: auto;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     #judul {
@@ -1115,12 +1224,21 @@ thead th {
         margin-bottom: 8vh;
     }
 
+    .insight h4{
+        font-size: 16px;
+        width: 165px;
+    }
+    
+    .insight p{
+        font-size: 12px;
+    }
+
     footer {
         font-size: 14px;
     }
 
-    .action {
-        font-size: 2vw;
+    .action p {
+        font-size: 10px;
     }
 
     .action h1 {
@@ -1133,11 +1251,11 @@ thead th {
     }
 
     .filter__data label {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     .filter__data select {
-        font-size: 7px;
+        font-size: 10px;
         width: 50%;
         margin-left: 10px;
     }
