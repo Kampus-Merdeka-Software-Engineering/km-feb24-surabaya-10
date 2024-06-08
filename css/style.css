@@ -93,13 +93,15 @@ body {
     font-size: 1vw;
 }
 
-.keterangan h2{
+.keterangan h2 {
     font-size: 1.5vw;
-    background-color: var(--secondary); 
+    background-color: var(--secondary);
     color: white;
     text-align: center;
-    padding: 5px; /* Optional: Adds some padding for better appearance */
-    border-radius: 3px; /* Optional: Rounds the corners */
+    padding: 5px;
+    /* Optional: Adds some padding for better appearance */
+    border-radius: 3px;
+    /* Optional: Rounds the corners */
 }
 
 p {
@@ -335,9 +337,10 @@ footer {
     font-family: sans-serif;
     font-size: 20px;
     text-align: center;
-   
+
 }
-#judul h6{
+
+#judul h6 {
     margin-top: -10px;
     margin-bottom: 10vh;
 }
@@ -354,46 +357,52 @@ footer {
 
 /* Style for the dropdown container */
 #filter__dashboard select {
-    background-color: var(--secondary); 
-    border: 1px solid #ccc; 
-    padding: 5px; 
-    font-size: 13px;
-    color: #ffffff; 
+    background-color: var(--secondary);
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 1.1vw;
+    color: #ffffff;
     font: bold;
-    border-radius: 10px; 
-    width: 100%; 
-    box-sizing: border-box; 
-    margin-bottom: 10px; 
-    position: relative; 
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    position: relative;
     cursor: pointer;
 }
 
 /* Style for the dropdown arrow */
 #filter__dashboard select::after {
-    content: '\25BC'; /* Unicode character for downward arrow */
+    content: '\25BC';
+    /* Unicode character for downward arrow */
     position: absolute;
-    right: 15px; 
-    top: 50%; /* Center arrow vertically */
-    transform: translateY(-50%); /* Center arrow vertically */
-    pointer-events: none; 
-    color: var(--bg-primary); 
+    right: 15px;
+    top: 50%;
+    /* Center arrow vertically */
+    transform: translateY(-50%);
+    /* Center arrow vertically */
+    pointer-events: none;
+    color: var(--bg-primary);
     padding: 10px;
 }
 
 /* Ensure the arrow is visible */
 #filter__dashboard {
-    position: relative; 
+    position: relative;
 }
 
 #filter__dashboard select {
-    padding-right: 30px; 
+    padding-right: 30px;
 }
 
 /* Extra styling for better UX */
 #filter__dashboard select:focus {
-    border-color: var(--primary); /* Border color on focus */
-    outline: none; /* Remove outline on focus */
-    box-shadow: 0 0 10px var(--primary); /* Add shadow on focus */
+    border-color: var(--primary);
+    /* Border color on focus */
+    outline: none;
+    /* Remove outline on focus */
+    box-shadow: 0 0 10px var(--primary);
+    /* Add shadow on focus */
 }
 
 
@@ -424,6 +433,11 @@ footer {
     box-sizing: content-box;
 }
 
+.icon {
+    width: 30px;
+    margin: 15px 20px 0 20px;
+}
+
 .dropdown {
     width: 20%;
     display: flex;
@@ -445,14 +459,14 @@ footer {
     justify-content: center;
 }
 
-.insight{
+.insight {
     display: flex;
     border-top: 5px solid #000;
     padding-top: 20px;
     margin-top: 80px;
 }
 
-.insight h4{
+.insight h4 {
     background-color: var(--secondary);
     color: var(--primary);
     text-shadow: 0 2px 5px #ffffff;
@@ -463,7 +477,7 @@ footer {
     padding: 1vw;
 }
 
-.insight p{
+.insight p {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     padding: 8px;
     background-color: #ffffff;
@@ -895,12 +909,12 @@ thead th {
         text-align: left;
     }
 
-.keterangan h2{
+    .keterangan h2 {
         width: 50vw;
         font-size: 14px;
         text-align: center;
         margin-left: 25%;
-    }    
+    }
 
     .keterangan p {
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -957,7 +971,7 @@ thead th {
     }
 
     #sidebar a h5 {
-        font-size: 10px;
+        font-size: 12px;
     }
 
     #sidebar a:hover:not(.active) {
@@ -1017,13 +1031,13 @@ thead th {
         width: 50%;
         margin-left: 10px;
     }
-    
-    .insight h4{
+
+    .insight h4 {
         font-size: 15px;
         width: 130px;
     }
-    
-    .insight p{
+
+    .insight p {
         font-size: 11px;
     }
 
@@ -1127,12 +1141,12 @@ thead th {
         text-align: center;
     }
 
-    .keterangan h2{
+    .keterangan h2 {
         width: 50vw;
         font-size: 13px;
         text-align: center;
         margin-left: 25%;
-    }  
+    }
 
     .keterangan h3 {
         font-size: 13px;
@@ -1213,7 +1227,7 @@ thead th {
     }
 
     #filter__dashboard select {
-        width: auto;
+
         font-size: 16px;
     }
 
@@ -1224,12 +1238,12 @@ thead th {
         margin-bottom: 8vh;
     }
 
-    .insight h4{
+    .insight h4 {
         font-size: 16px;
         width: 165px;
     }
-    
-    .insight p{
+
+    .insight p {
         font-size: 12px;
     }
 
