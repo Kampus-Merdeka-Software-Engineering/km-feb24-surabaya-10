@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ////DASHBOARD
 //mengambil data 
-import data from '../assets/data/nyc.json' with {type: 'json'}; // Sesuaikan dengan path yang benar
+import data from './assets/data/nyc.json' with {type: 'json'}; // Sesuaikan dengan path yang benar
 if (!data) {
     loadingOverlay.style.display = 'flex'; // Tampilkan overlay
 } else {
