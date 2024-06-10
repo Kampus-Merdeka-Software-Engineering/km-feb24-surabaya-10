@@ -306,7 +306,12 @@ footer {
     justify-content: center;
     color: var(--primary);
     align-items: center;
+    text-align: center;
     z-index: 9999;
+}
+
+.overlay p {
+    font-size: large;
 }
 
 /* Style untuk animasi loading */
