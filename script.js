@@ -161,20 +161,35 @@ function updateAllCharts() {
     displayTotalTransaction(filteredDwellings);
 }
 
+// Fungsi untuk memperbarui data chart
 function updateChartData(chart, newData) {
+    let labels = Object.keys(newData[0]);
+    if (chart.config.type === 'bar') {
+        labels.sort(); // Urutkan label secara alfabetis jika chart adalah bar chart
+    }
+
     chart.data.datasets.forEach((dataset, index) => {
-        dataset.data = Object.values(newData[index]);
+        dataset.data = labels.map(label => newData[index][label] || 0);
     });
-    chart.data.labels = Object.keys(newData[0]); // Assumes all datasets have the same labels
+
+    chart.data.labels = labels; 
     chart.update();
 }
 
+// Fungsi untuk membuat chart
 function CreateChart(type, ChartName, ChartID, datasets) {
+    // Dapatkan dan urutkan label
+    let labels = Object.keys(datasets[0].data);
+    if (type === 'bar') {
+        labels.sort(); // Urutkan label secara alfabetis jika chart adalah bar chart
+    }
+
+    // Siapkan data chart
     const data = {
-        labels: Object.keys(datasets[0].data), // Assumes all datasets have the same labels
+        labels: labels,
         datasets: datasets.map(ds => ({
             label: ds.label,
-            data: Object.values(ds.data),
+            data: labels.map(label => ds.data[label] || 0),
             backgroundColor: ds.backgroundColor,
             borderColor: ds.borderColor,
             fill: false,
@@ -185,6 +200,7 @@ function CreateChart(type, ChartName, ChartID, datasets) {
         }))
     };
 
+    // Buat chart baru
     const createdChart = new Chart(ChartID, {
         type: type,
         data: data,
@@ -250,6 +266,7 @@ function CreateChart(type, ChartName, ChartID, datasets) {
 
     return createdChart;
 }
+
 // Fungsi untuk menghitung jumlah data berdasarkan bulan dan tahun dari data penjualan
 function countDataByMonthAndYear(data) {
     return data.reduce((counts, item) => {
