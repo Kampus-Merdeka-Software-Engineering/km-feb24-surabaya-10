@@ -639,9 +639,9 @@ const Team = [
     },
     {
         'nama': 'Ezra Anang Yudhistira',
-        'jurusan': 'Tehnik Informatika',
+        'jurusan': 'Sistem Informasi',
         'angkatan': 21,
-        'universitas': 'Universitas Cendekia Abditama',
+        'universitas': 'STIKI Malang',
         'gambar': 'EZRA A Y.jpg'
     },
     {
