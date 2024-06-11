@@ -172,7 +172,7 @@ function updateChartData(chart, newData) {
         dataset.data = labels.map(label => newData[index][label] || 0);
     });
 
-    chart.data.labels = labels; 
+    chart.data.labels = labels;
     chart.update();
 }
 
