@@ -161,8 +161,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
-    height: 3vh;
+    width: 100%;
+    height: 20px;
     background-color: var(--primary);
     color: var(--secondary);
 }
@@ -591,14 +591,14 @@ thead th {
     color: white;
 }
 
-.header {
+.table__head {
     display: flex;
     align-items: center;
     gap: 5px;
     justify-content: space-between;
 }
 
-.header button {
+.table__head button {
     padding: 0;
     background-color: #1c2833;
     border: 0;
@@ -715,6 +715,7 @@ thead th {
 .profile {
     display: grid;
     row-gap: 7vh;
+    text-align: center;
 }
 
 .mentor-container {
@@ -761,17 +762,10 @@ thead th {
     margin: 0;
 }
 
-.team-container {
+.team {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 10px 20px;
-}
-
-.team-row {
-    display: flex;
-    margin-bottom: 5vh;
-    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .team h2 {
@@ -780,8 +774,10 @@ thead th {
 }
 
 .team-member {
+    margin-bottom: 5vh;
+    justify-content: center;
     text-align: center;
-    width: 20%;
+    width: 17%;
     margin-left: 2vw;
 }
 
@@ -944,30 +940,21 @@ thead th {
         gap: 20px;
     }
 
-    .team-row {
-        flex-direction: row;
-        width: 100%;
-    }
-
-    .team-member {
-        width: 100%;
-        margin-left: 0;
-    }
-
     #sidebar {
         width: 100%;
         height: 35px;
         position: fixed;
         margin-left: 0;
-        margin-top: 1vw;
         background-color: #ffffff;
     }
 
     #sidebar a.active {
         border-radius: 0 0 5px 5px;
+        font-size: 20px;
     }
 
     #sidebar a {
+        font-size: 30px;
         margin-top: 0;
         margin-right: 5px;
         float: left;
@@ -1091,6 +1078,7 @@ thead th {
     footer h5 {
         font-size: 14px;
     }
+<<<<<<< Updated upstream
 }
 
 
@@ -1346,4 +1334,6 @@ thead th {
         font-size: 10px;
         margin: 4px 0;
     }
+=======
+>>>>>>> Stashed changes
 }

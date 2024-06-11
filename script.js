@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //tambah tombol sort
 
     let activeButton = null; // Variabel untuk menyimpan tombol yang sedang aktif
-    const headers = document.querySelectorAll('.header');
+    const headers = document.querySelectorAll('.table__head');
 
     headers.forEach((header, index) => {
         if (index > 0) {
@@ -594,6 +594,114 @@ function sortData(dataToSort, filterBy, sortOrder) {
 
 
 /////// Data Team
+const Team = [
+    {
+        'nama': 'Ian Syadewa',
+        'jurusan': 'Hubungan Internasional',
+        'angkatan': 21,
+        'universitas': 'UPN Veteran Jakarta',
+        'gambar': 'IAN.png'
+    },
+    {
+        'nama': 'Miil Saputri',
+        'jurusan': 'Tehnik Informatika',
+        'angkatan': 21,
+        'universitas': 'STMIK widya Utma',
+        'gambar': 'Miil.jpg'
+    },
+    {
+        'nama': 'Rifki Hamdani',
+        'jurusan': 'Sistem Informasi',
+        'angkatan': 21,
+        'universitas': 'STMIK Indonesia Mandiri',
+        'gambar': 'Rifki.jpg'
+    },
+    {
+        'nama': 'Roudhotulloh Nazakhan',
+        'jurusan': 'Tehnik Informatika',
+        'angkatan': 21,
+        'universitas': 'Universitas Negri Malang',
+        'gambar': 'Naza.jpg'
+    },
+    {
+        'nama': 'Zaidan Adli Wibawa',
+        'jurusan': 'Sistem Informasi',
+        'angkatan': 21,
+        'universitas': 'Universitas Negeri Semarang',
+        'gambar': 'zaidan.jpg'
+    },
+    {
+        'nama': 'Anni Kholilah',
+        'jurusan': 'Tehnik Informatika',
+        'angkatan': 21,
+        'universitas': 'Universitas Cendekia Abditama',
+        'gambar': 'Anni.jpg'
+    },
+    {
+        'nama': 'Ezra Anang Yudhistira',
+        'jurusan': 'Tehnik Informatika',
+        'angkatan': 21,
+        'universitas': 'Universitas Cendekia Abditama',
+        'gambar': 'EZRA A Y.jpg'
+    },
+    {
+        'nama': 'Siti Rohanah',
+        'jurusan': 'Manajement',
+        'angkatan': 21,
+        'universitas': 'Universitas Mercu Buana Jakarta',
+        'gambar': 'Hana.jpg'
+    },
+    {
+        'nama': 'Iren Yolanda Sitompul',
+        'jurusan': 'Fisika',
+        'angkatan': 21,
+        'universitas': 'Universitas Gadjah Mada',
+        'gambar': 'Iren Y.JPG'
+    },
+    {
+        'nama': 'Imaroh Alawiyah',
+        'jurusan': 'Hubungan Internasional',
+        'angkatan': 21,
+        'universitas': 'Universitas Jember',
+        'gambar': 'Alawiyah.jpg'
+    },
+    {
+        'nama': 'Nurani Gita Safitri',
+        'jurusan': 'Manajemen',
+        'angkatan': 21,
+        'universitas': 'Universitas Jenderal Soedirman',
+        'gambar': 'Nurani Gita Safitri.jpg'
+    },
+    {
+        'nama': 'Karan Bagas Adrian',
+        'jurusan': 'Pendidikan Guru Sekolah Dasar',
+        'angkatan': 21,
+        'universitas': 'Universitas Pendidikan Indonesia',
+        'gambar': 'Karan.jpg'
+    },
+]
+//menampilkan anggota Team
+const team_member = document.querySelector('.team');
+let i = 1;
+Team.forEach(team => {
+    team_member.innerHTML += `<div class="team-member">
+                                <img src="assets/img/${team.gambar}" alt="${team.nama}">
+                                <h5> ${team.nama} </h5>
+                            </div>
+                            <div class="popup" id="popup-${i}">
+                                <div class="popup-content">
+                                    <img src="assets/img/${team.gambar}" alt="${team.nama}">
+                                    <h3>${team.nama}</h3>
+                                    <p>${team.jurusan}</p>
+                                    <p>${team.universitas}</p>
+                                    <span class="close-icon">&times;</span>
+                                </div>
+                            </div>`;
+    i++;
+});
+
+
+
 // Variabel global untuk menyimpan pop-up yang saat ini terbuka
 let openPopup = null;
 
