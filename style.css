@@ -161,8 +161,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    height: 20px;
+    width: 100vw;
+    height: 3vh;
     background-color: var(--primary);
     color: var(--secondary);
 }
@@ -362,10 +362,12 @@ footer {
 
 /* Style for the dropdown container */
 #filter__dashboard select {
-    border: 1px solid var(--secondary);
+    background-color: var(--secondary);
+    border: 1px solid #ccc;
     padding: 5px;
     font-size: 1.1vw;
     font: bold;
+    color: #ffffff;
     border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
@@ -762,8 +764,23 @@ thead th {
 
 .team {
     display: flex;
-    width: 100%;
+    flex-direction: row;
     flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.team-member {
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }
 
 .team h2 {
@@ -771,26 +788,12 @@ thead th {
     text-align: center;
 }
 
-.team-member {
-    margin-bottom: 5vh;
-    justify-content: center;
-    text-align: center;
-    width: 17%;
-    margin-left: 2vw;
-}
 
 .team-member h5 {
     margin-bottom: 1vh;
     font-size: 15px;
 }
 
-.team-member img {
-    width: 7vw;
-    height: 7vw;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-}
 
 /* Popup */
 .popup {
@@ -852,7 +855,7 @@ thead th {
 }
 
 /* Gaya khusus untuk tampilan mobile. Ensure responsive layout. */
-@media (max-width: 1024px) {
+@media (min-width: 601px) and (max-width: 1024px) {
     .landing-page {
         margin-right: 5vw;
         margin-left: 0;
@@ -944,6 +947,7 @@ thead th {
         height: 35px;
         position: fixed;
         margin-left: 0;
+        margin-top: 1vw;
         background-color: #ffffff;
     }
 
@@ -953,6 +957,7 @@ thead th {
     }
 
     #sidebar a {
+        font-size: 30px;
         margin-top: 0;
         margin-right: 5px;
         float: left;
@@ -961,7 +966,7 @@ thead th {
     }
 
     #sidebar a h5 {
-        font-size: 18px;
+        font-size: 12px;
     }
 
 
@@ -996,6 +1001,8 @@ thead th {
 
     #filter__dashboard {
         display: flex;
+        flex-direction: column;
+        margin-bottom: 3vh;
         flex-direction: row;
     }
 
@@ -1062,29 +1069,283 @@ thead th {
         height: 10vw;
     }
 
+   .team {
+            flex-direction: row;
+        margin-left: 10px;
+    }
+
     .popup {
-        right: 10vw;
-        width: 80vw;
-        height: 50vh;
+        right: 25vw;
+        height: 40vh;
     }
 
     .popup-content h3 {
         text-align: center;
-        font-size: 70px;
+        font-size: 15px;
     }
 
     .popup-content p {
+        font-size: 10px;
         margin: 4px 0;
         text-align: center;
         font-size: 40px;
     }
 
     .popup-content img {
-        width: 40vw;
-        height: 40vw;
+        width: 15vw;
+        height: 15vw;
     }
 
     footer h5 {
         font-size: 14px;
+    }
+}
+
+/* Style untuk tampilan mobile halaman contents */
+@media (max-width: 600px) {
+    .landing-page {
+        margin-right: 5vw;
+        margin-left: 0;
+    }
+
+    .logos {
+        margin-left: 5vw;
+        width: 110px;
+        height: 40px;
+    }
+
+    .logos img {
+        width: 30px;
+    }
+
+    .background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Adjust height as needed */
+        z-index: 1;
+    }
+
+    /* Media query untuk mengubah background image pada orientasi potret */
+    .background img {
+        content: url('../assets/img/potrait.png');
+    }
+
+    .background img {
+        position: absolute;
+        bottom: 0;
+        width: 100vw;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .keterangan {
+        width: 100vw;
+        text-align: center;
+    }
+
+    .keterangan h1 {
+        font-size: 25px;
+        margin-top: 10vh;
+        text-align: center;
+    }
+
+    .keterangan h2 {
+        width: 50vw;
+        font-size: 13px;
+        text-align: center;
+        margin-left: 25%;
+    }
+
+    .keterangan h3 {
+        font-size: 13px;
+        text-align: left;
+        margin-left: 5vw;
+    }
+
+    .keterangan p {
+        margin-left: 15%;
+        width: 70vw;
+        font-size: 12px;
+    }
+
+    #enterButton {
+        width: 15vw;
+        height: 3vh;
+        font-size: 2vw;
+        padding: 0;
+        justify-content: center;
+    }
+
+    #sidebar {
+        width: 100%;
+        height: 35px;
+        position: fixed;
+        margin-left: 0;
+        margin-top: 1vw;
+        background-color: #ffffff;
+    }
+
+    #sidebar a.active {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #sidebar a {
+        margin-top: 0;
+        margin-right: 5px;
+        float: left;
+        padding: 0;
+    }
+
+    #sidebar h5 {
+        padding: 1vw;
+        font-size: 2vw;
+        margin: 0;
+    }
+
+    #sidebar a:hover:not(.active) {
+        border-radius: 0 0 5px 5px;
+    }
+
+    #contents {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 4vh;
+    }
+
+    .loader {
+        width: 60px;
+        height: 60px;
+    }
+
+    .section__title,
+    .section__total-revenue,
+    .section__total-transaction {
+        font-size: 18px;
+    }
+
+    #grid-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #filter__dashboard {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 3vh;
+    }
+
+    #filter__dashboard select {
+
+        font-size: 16px;
+    }
+
+    #judul {
+        font-family: sans-serif;
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 8vh;
+    }
+
+    .insight h4 {
+        font-size: 16px;
+        width: 165px;
+    }
+
+    .insight p {
+        font-size: 12px;
+    }
+
+    footer {
+        font-size: 14px;
+    }
+
+    .action p {
+        font-size: 10px;
+    }
+
+    .action h1 {
+        font-size: 3vw;
+    }
+
+    #prevPage,
+    #nextPage {
+        font-size: 8px;
+    }
+
+    .filter__data label {
+        font-size: 12px;
+    }
+
+    .filter__data select {
+        font-size: 10px;
+        width: 50%;
+        margin-left: 10px;
+    }
+
+    .modal-text {
+        font-size: 2vw;
+        text-align: left;
+    }
+
+    .modal__button {
+        font-size: 2vw;
+    }
+
+    .profile {
+        display: contents;
+    }
+
+    .mentor-container {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+        gap: 20px;
+    }
+
+    .mentors h2,
+    .team h2 {
+        margin-top: 3vh;
+        font-size: 3vw;
+    }
+
+    .mentor h5,
+    .team-member h5 {
+        font-size: 2vw;
+        margin-bottom: 5vh;
+    }
+
+    .team {
+        flex-direction: row;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .team-member img,
+    .mentor-profile img {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .popup-content img {
+        width: 26vw;
+        height: 26vw;
+    }
+
+    .popup-content h3 {
+        text-align: center;
+        font-size: 2.3vw;
+    }
+
+    .popup {
+        width: 35vw;
+        height: 45vw;
+    }
+
+    .popup-content p {
+        font-size: 10px;
+        margin: 4px 0;
     }
 }
